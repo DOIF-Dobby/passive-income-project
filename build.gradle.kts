@@ -68,7 +68,7 @@ subprojects {
   }
 
   // app 모듈은 bootJar 생성
-  if (project.name.startsWith("passive-income-app")) {
+  if (project.name.startsWith("passive-income-app-")) {
     apply {
       plugin("org.springframework.boot")
     }

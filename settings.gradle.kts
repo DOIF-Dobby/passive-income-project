@@ -6,6 +6,7 @@ include("passive-income")
 include("passive-income:passive-income-core")
 include("passive-income:passive-income-util")
 include("passive-income:passive-income-app-service")
+include("passive-income:passive-income-app-kis")
 
 rootProject.name = "passive-income-project"
 

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: passive-income-app-kis
+
+
+kis:
+  url: https://openapi.koreainvestment.com:9443
