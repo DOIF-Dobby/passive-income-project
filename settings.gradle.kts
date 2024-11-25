@@ -3,7 +3,9 @@ plugins {
 }
 
 include("passive-income")
-include("passive-income:core")
+include("passive-income:passive-income-core")
+include("passive-income:passive-income-util")
+include("passive-income:passive-income-app-service")
 
 rootProject.name = "passive-income-project"
 
