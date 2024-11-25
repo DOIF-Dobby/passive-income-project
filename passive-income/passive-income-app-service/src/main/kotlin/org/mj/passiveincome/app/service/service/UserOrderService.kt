@@ -8,24 +8,24 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserOrderService(
-  private val userOrderRepository: UserOrderRepository
+	private val userOrderRepository: UserOrderRepository
 ) {
 
-  @Transactional
-  fun createOrder() {
-    val exchangeRateValue = 1407.00
-    // 2145013.71
+	@Transactional
+	fun createOrder() {
+		val exchangeRateValue = 1407.00
+		// 2145013.71
 
-    val usd = Money.usd(1524.53)
-    UserOrder(
-      fromMoney = usd,
-      toMoney = usd.exchangeKrw(exchangeRateValue),
-    ).let { userOrderRepository.save(it) }
+		val usd = Money.usd(1524.53)
+		UserOrder(
+			fromMoney = usd,
+			toMoney = usd.exchangeKrw(exchangeRateValue),
+		).let { userOrderRepository.save(it) }
 
-  }
+	}
 
-  @Transactional(readOnly = true)
-  fun findUserOrder(id: Long): UserOrder {
-    return userOrderRepository.findById(id).orElseThrow()
-  }
+	@Transactional(readOnly = true)
+	fun findUserOrder(id: Long): UserOrder {
+		return userOrderRepository.findById(id).orElseThrow()
+	}
 }

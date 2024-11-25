@@ -4,6 +4,7 @@ plugins {
   kotlin("plugin.jpa") version "1.9.25"
   id("org.springframework.boot") version "3.4.0"
   id("io.spring.dependency-management") version "1.1.6"
+  id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 // 빌드 시 루트 프로젝트 jar 생성 되지 않게
@@ -16,9 +17,7 @@ tasks.bootJar {
 }
 
 // 서브 모듈이지만 directory인 모듈들
-val directoryModules = arrayOf(
-  ":passive-income"
-)
+val directoryModules = arrayOf(":passive-income")
 
 allprojects {
   group = "org.mj.passiveincome"
@@ -87,4 +86,3 @@ subprojects {
     useJUnitPlatform()
   }
 }
-

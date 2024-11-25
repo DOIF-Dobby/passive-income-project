@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class UserOrderController(
-  private val userOrderService: UserOrderService
+	private val userOrderService: UserOrderService
 ) {
 
-  @PostMapping("/order")
-  fun createOrder() {
-    userOrderService.createOrder()
-  }
+	@PostMapping("/order")
+	fun createOrder() {
+		userOrderService.createOrder()
+	}
 
-  @GetMapping("/order/{id}")
-  fun findUserOrder(@PathVariable id: Long): UserOrderDto {
-    val userOrder = userOrderService.findUserOrder(id)
-    return UserOrderDto.from(userOrder)
-  }
+	@GetMapping("/order/{id}")
+	fun findUserOrder(@PathVariable id: Long): UserOrderDto {
+		val userOrder = userOrderService.findUserOrder(id)
+		return UserOrderDto.from(userOrder)
+	}
 }
