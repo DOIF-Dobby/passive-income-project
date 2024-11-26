@@ -1,6 +1,6 @@
 package org.mj.passiveincome.core.email
 
-open class EmailException(message: String) : RuntimeException(message) {
-}
+import org.mj.passiveincome.core.base.BaseException
 
-class InvalidEmailException : EmailException("Invalid email")
+class InvalidEmailException : BaseException(message = "Invalid email") {
+}

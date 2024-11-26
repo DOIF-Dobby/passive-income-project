@@ -8,7 +8,7 @@ import org.junit.jupiter.api.assertThrows
 class EmailTest {
 
   @Test
-  @DisplayName("이메일 생성 테스트")
+  @DisplayName("이메일 객체 생성 테스트")
   fun createEmailTest() {
     // given
     val email1 = Email("doif.dobby@gmail.com")
@@ -20,7 +20,7 @@ class EmailTest {
   }
 
   @Test
-  @DisplayName("설명")
+  @DisplayName("이메일 invalid email 테스트")
   fun invalidEmail() {
     fun assertThrowInvalidException(block: () -> Unit) {
       assertThrows<InvalidEmailException> { block() }.let { assertThat(it.message).isEqualTo("Invalid email") }

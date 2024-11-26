@@ -1,7 +1,7 @@
 package org.mj.passiveincome.core.money
 
-open class MoneyException(message: String) : RuntimeException(message)
+import org.mj.passiveincome.core.base.BaseException
 
-class CurrencyMismatchException : MoneyException("Currency mismatch")
+class CurrencyMismatchException : BaseException(message = "Currency mismatch")
 
-class NonFractionalCurrencyException : MoneyException("Non fractional currency")
+class NonFractionalCurrencyException : BaseException(message = "Non fractional currency")
