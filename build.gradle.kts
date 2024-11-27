@@ -22,7 +22,7 @@ val directoryModules = arrayOf(":passive-income")
 
 allprojects {
   group = "org.mj.passiveincome"
-  version = "1.0-SNAPSHOT"
+  version = "0.0.1"
 
   repositories {
     mavenCentral()
@@ -35,6 +35,7 @@ subprojects {
     plugin("org.jetbrains.kotlin.plugin.jpa")
     plugin("org.jetbrains.kotlin.plugin.spring")
     plugin("io.spring.dependency-management")
+    plugin("org.mj.passiveincome.build.optional.optional-dependencies")
   }
 
   kotlin {
@@ -68,10 +69,14 @@ subprojects {
     annotation("jakarta.persistence.Embeddable")
   }
 
-  // app 모듈은 bootJar 생성
-  if (project.name.startsWith("passive-income-app-")) {
+  // app 모듈은 bootJar 생성 & plain jar은 생성하지 않는다.
+  if (project.name.startsWith("app-")) {
     apply {
       plugin("org.springframework.boot")
+    }
+
+    tasks.jar {
+      enabled = false
     }
   }
 
@@ -87,6 +92,3 @@ subprojects {
     useJUnitPlatform()
   }
 }
-
-
-
