@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
-import org.mj.passiveincome.system.core.base.BaseEntity
+import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 @Table(name = "users")

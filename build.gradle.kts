@@ -22,7 +22,6 @@ val directoryModules = arrayOf(":passive-income")
 
 allprojects {
   group = "org.mj.passiveincome"
-  version = "0.0.1"
 
   repositories {
     mavenCentral()

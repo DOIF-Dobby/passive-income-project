@@ -3,4 +3,5 @@ dependencies {
   implementation("org.springframework.data:spring-data-jpa")
 
   implementation(project(":passive-income:system-core"))
+  implementation(project(":passive-income:system-data-jpa"))
 }

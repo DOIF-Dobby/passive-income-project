@@ -1,7 +1,7 @@
 package org.mj.passiveincome.app.service.stock
 
 import org.mj.passiveincome.domain.stock.StockRepository
-import org.mj.passiveincome.system.core.extension.findAllWithMap
+import org.mj.passiveincome.system.data.findAllWithMap
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

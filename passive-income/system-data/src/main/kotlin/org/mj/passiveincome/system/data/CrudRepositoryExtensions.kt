@@ -1,4 +1,4 @@
-package org.mj.passiveincome.system.core.extension
+package org.mj.passiveincome.system.data
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.findByIdOrNull

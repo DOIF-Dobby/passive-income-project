@@ -5,10 +5,14 @@ plugins {
 include("passive-income")
 include("passive-income:app-kis")
 include("passive-income:app-service")
+include("passive-income:domain-common")
 include("passive-income:domain-finance")
 include("passive-income:domain-stock")
 include("passive-income:domain-user")
 include("passive-income:system-core")
+include("passive-income:system-data")
+include("passive-income:system-data-jpa")
+include("passive-income:system-web")
 
 rootProject.name = "passive-income-project"
 

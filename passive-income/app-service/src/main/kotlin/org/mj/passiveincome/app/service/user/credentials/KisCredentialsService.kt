@@ -3,7 +3,7 @@ package org.mj.passiveincome.app.service.user.credentials
 import org.mj.passiveincome.domain.credentials.UserKisCredentials
 import org.mj.passiveincome.domain.credentials.UserKisCredentialsRepository
 import org.mj.passiveincome.domain.user.UserRepository
-import org.mj.passiveincome.system.core.extension.findByIdOrThrow
+import org.mj.passiveincome.system.data.findByIdOrThrow
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

@@ -1,15 +1,15 @@
-package org.mj.passiveincome.system.core.email
+package org.mj.passiveincome.domain.common.email
 
 import jakarta.persistence.Embeddable
 import java.util.regex.Pattern
 
 @Embeddable
 class Email(
-  val value: String
+  val address: String
 ) {
 
   init {
-    require(isValid(value)) { throw InvalidEmailException() }
+    require(isValid(address)) { throw InvalidEmailException() }
   }
 
   companion object {

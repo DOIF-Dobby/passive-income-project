@@ -8,7 +8,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.user.User
-import org.mj.passiveincome.system.core.base.BaseEntity
+import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 class UserAccount(

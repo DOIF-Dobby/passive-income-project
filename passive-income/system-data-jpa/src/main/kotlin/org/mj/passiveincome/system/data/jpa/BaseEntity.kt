@@ -1,4 +1,4 @@
-package org.mj.passiveincome.system.core.base
+package org.mj.passiveincome.system.data.jpa
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners

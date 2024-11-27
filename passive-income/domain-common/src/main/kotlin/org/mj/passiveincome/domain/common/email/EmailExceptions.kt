@@ -1,4 +1,4 @@
-package org.mj.passiveincome.system.core.email
+package org.mj.passiveincome.domain.common.email
 
 import org.mj.passiveincome.system.core.base.BaseException
 
