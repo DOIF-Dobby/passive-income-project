@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.findByIdOrNull
 
 fun notFound(): Nothing {
-  throw IllegalArgumentException("Not Found")
+  throw EntityNotFoundException()
 }
 
 fun <T, ID> CrudRepository<T, ID>.findByIdOrThrow(id: ID, throwBlock: () -> Nothing = notFound()): T {

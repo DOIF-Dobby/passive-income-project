@@ -12,6 +12,19 @@ class Email(
     require(isValid(address)) { throw InvalidEmailException() }
   }
 
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as Email
+
+    return address == other.address
+  }
+
+  override fun hashCode(): Int {
+    return address.hashCode()
+  }
+
   companion object {
     const val EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
     val PATTERN = Pattern.compile(EMAIL_REGEX)

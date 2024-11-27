@@ -18,6 +18,17 @@ class EmailTest {
   }
 
   @Test
+  @DisplayName("이메일 동등성 비교 테스트")
+  fun test() {
+    // given
+    val email1 = Email.of("doif.dobby@gmail.com")
+    val email2 = Email.of("doif.dobby@gmail.com")
+
+    // when & then
+    assertThat(email1).isEqualTo(email2)
+  }
+
+  @Test
   @DisplayName("이메일 invalid email 테스트")
   fun invalidEmail() {
     fun assertThrowInvalidException(block: () -> Unit) {
