@@ -1,6 +1,8 @@
 package org.mj.passiveincome.app.service.user
 
-import org.mj.passiveincome.system.core.base.BaseResponse
+import org.mj.passiveincome.system.core.base.BaseResponseDetail
+import org.mj.passiveincome.system.web.response.BaseResponseContent
+import org.mj.passiveincome.system.web.response.content
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -11,8 +13,8 @@ class UserController(
 ) {
 
   @PostMapping("/users")
-  fun signUp(@RequestBody request: SignUpRequest): BaseResponse<Unit> {
+  fun signUp(@RequestBody request: SignUpRequest): BaseResponseContent<String> {
     userService.signUp(request)
-    return BaseResponse.ok()
+    return BaseResponseDetail.content(listOf("User created", "Please check your email to verify your account"))
   }
 }

@@ -1,33 +1,30 @@
 package org.mj.passiveincome.system.core.base
 
 
-class BaseResponse<T>(
+open class BaseResponse(
   val code: String,
   val message: String,
-  val data: T? = null
 ) {
+  
   companion object {
-    fun <T> from(status: BaseStatus, message: String? = null, data: T? = null): BaseResponse<T> {
+    fun from(status: BaseStatus, message: String? = null): BaseResponse {
       return BaseResponse(
         code = status.code,
         message = message ?: status.message,
-        data = data
       )
     }
 
-    fun <T> ok(message: String? = null, data: T? = null): BaseResponse<T> {
+    fun ok(message: String? = null): BaseResponse {
       return from(
         status = BaseStatus.SUCCESS,
         message = message,
-        data = data
       )
     }
 
-    fun <T> fail(message: String? = null, data: T? = null): BaseResponse<T> {
+    fun fail(message: String? = null): BaseResponse {
       return from(
         status = BaseStatus.FAIL,
         message = message,
-        data = data
       )
     }
   }
