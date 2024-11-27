@@ -5,6 +5,7 @@ plugins {
   id("org.springframework.boot") version "3.4.0"
   id("io.spring.dependency-management") version "1.1.6"
   id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+  id("org.mj.passiveincome.build.optional.optional-dependencies")
 }
 
 // 빌드 시 루트 프로젝트 jar 생성 되지 않게
@@ -86,3 +87,6 @@ subprojects {
     useJUnitPlatform()
   }
 }
+
+
+

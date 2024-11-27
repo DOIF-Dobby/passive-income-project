@@ -4,5 +4,4 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
 
   implementation(project(":passive-income:passive-income-core"))
-  implementation(project(":passive-income:passive-income-util"))
 }

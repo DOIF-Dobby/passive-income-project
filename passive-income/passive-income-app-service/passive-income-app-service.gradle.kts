@@ -7,7 +7,6 @@ dependencies {
   runtimeOnly("org.postgresql:postgresql")
 
   implementation(project(":passive-income:passive-income-core"))
-  implementation(project(":passive-income:passive-income-util"))
 
   implementation(project(":passive-income:passive-income-domain-user"))
   implementation(project(":passive-income:passive-income-domain-stock"))
