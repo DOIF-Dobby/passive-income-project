@@ -1,5 +1,6 @@
 package org.mj.passiveincome.domain.account
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -20,6 +21,7 @@ class UserAccount(
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "user_account_id")
   val id: Long? = null,
 ) : BaseEntity() {
 }

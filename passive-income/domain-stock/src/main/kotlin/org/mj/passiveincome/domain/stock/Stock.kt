@@ -1,5 +1,6 @@
 package org.mj.passiveincome.domain.stock
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -28,6 +29,7 @@ class Stock(
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "stock_id")
   val id: Long? = null,
 ) : BaseEntity() {
 }

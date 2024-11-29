@@ -1,27 +1,21 @@
-package org.mj.passiveincome.domain.user
+package org.mj.passiveincome.domain.portfolio.interest
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.Table
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
-@Table(name = "users")
-class User(
-  val username: String,
+class InterestGroup(
 
-  @Enumerated(EnumType.STRING)
-  val status: UserStatus = UserStatus.ACTIVE,
+  @Column(name = "group_name")
+  val name: String,
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
+  @Column(name = "interest_group_id")
   val id: Long? = null,
 ) : BaseEntity() {
-
 }
