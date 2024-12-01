@@ -30,6 +30,6 @@ class Stock(
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "stock_id")
-  val id: Long? = null,
+  val id: Long = 0L,
 ) : BaseEntity() {
 }

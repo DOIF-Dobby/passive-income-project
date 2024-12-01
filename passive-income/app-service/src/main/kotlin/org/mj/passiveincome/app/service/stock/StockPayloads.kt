@@ -23,7 +23,7 @@ data class StockResponse(
   companion object {
     fun of(stock: Stock) = stock.run {
       StockResponse(
-        id = id!!,
+        id = id,
         standardCode = standardCode,
         shortCode = shortCode,
         nameKor = nameKor,
