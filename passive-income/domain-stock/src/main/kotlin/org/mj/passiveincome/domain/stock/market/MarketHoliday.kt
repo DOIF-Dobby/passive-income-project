@@ -1,4 +1,4 @@
-package org.mj.passiveincome.domain.user
+package org.mj.passiveincome.domain.stock.market
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -7,22 +7,20 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.Table
 import org.mj.passiveincome.system.data.jpa.BaseEntity
+import java.time.LocalDate
 
 @Entity
-@Table(name = "users")
-class User(
+class MarketHoliday(
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
+  @Column(name = "market_holiday_id")
   val id: Long = 0L,
 
-  val username: String,
-
   @Enumerated(EnumType.STRING)
-  val status: UserStatus = UserStatus.ACTIVE,
-
-  ) : BaseEntity() {
-
+  val marketType: MarketType,
+  val date: LocalDate,
+  val description: String,
+) : BaseEntity() {
 }

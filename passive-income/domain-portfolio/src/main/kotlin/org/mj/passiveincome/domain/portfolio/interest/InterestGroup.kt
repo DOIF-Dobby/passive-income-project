@@ -10,12 +10,13 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
 @Entity
 class InterestGroup(
 
-  @Column(name = "group_name")
-  val name: String,
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "interest_group_id")
   val id: Long = 0L,
-) : BaseEntity() {
+
+  @Column(name = "group_name")
+  val name: String,
+
+  ) : BaseEntity() {
 }

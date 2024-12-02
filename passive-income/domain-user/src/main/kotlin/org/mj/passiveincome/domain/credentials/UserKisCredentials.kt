@@ -13,6 +13,11 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 class UserKisCredentials(
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "user_kis_credentials_id")
+  val id: Long = 0L,
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   val user: User,
@@ -20,9 +25,5 @@ class UserKisCredentials(
   val appKey: String,
   val appSecretKey: String,
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_kis_credentials_id")
-  val id: Long = 0L,
-) : BaseEntity() {
+  ) : BaseEntity() {
 }

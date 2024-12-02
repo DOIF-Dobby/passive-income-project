@@ -1,9 +1,9 @@
 package org.mj.passiveincome.app.service.stock
 
-import org.mj.passiveincome.domain.stock.MarketType
 import org.mj.passiveincome.domain.stock.SecurityType
 import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.stock.StockType
+import org.mj.passiveincome.domain.stock.market.MarketType
 import java.time.LocalDate
 
 data class StockResponse(

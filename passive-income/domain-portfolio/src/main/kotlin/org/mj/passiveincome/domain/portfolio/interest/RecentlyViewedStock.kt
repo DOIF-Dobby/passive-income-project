@@ -13,13 +13,14 @@ import org.mj.passiveincome.domain.stock.Stock
 @Entity
 class RecentlyViewedStock(
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "stock_id")
-  val stock: Stock,
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "recently_viewed_stock_id")
   val id: Long = 0L,
-) {
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "stock_id")
+  val stock: Stock,
+
+  ) {
 }

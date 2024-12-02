@@ -15,6 +15,11 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
 @Entity
 class InterestStock(
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "interest_stock_id")
+  val id: Long = 0L,
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "interest_group_id")
   val group: InterestGroup,
@@ -26,10 +31,5 @@ class InterestStock(
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "stock_id")
   val stock: Stock,
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "interest_stock_id")
-  val id: Long = 0L,
 ) : BaseEntity() {
 }

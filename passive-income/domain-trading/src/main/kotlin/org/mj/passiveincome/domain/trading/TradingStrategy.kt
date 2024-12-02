@@ -14,6 +14,11 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
 @Entity
 class TradingStrategy(
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "trading_strategy_id")
+  val id: Long = 0L,
+
   @Column(name = "strategy_name")
   val name: String,
 
@@ -21,9 +26,5 @@ class TradingStrategy(
   @JoinColumn(name = "user_id")
   val user: User,
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "trading_strategy_id")
-  val id: Long = 0L,
-) : BaseEntity() {
+  ) : BaseEntity() {
 }

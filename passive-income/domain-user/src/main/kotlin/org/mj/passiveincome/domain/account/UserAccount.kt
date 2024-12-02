@@ -13,15 +13,16 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 class UserAccount(
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "user_account_id")
+  val id: Long = 0L,
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   val user: User,
 
   val accountNumber: String,
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_account_id")
-  val id: Long = 0L,
-) : BaseEntity() {
+  ) : BaseEntity() {
 }

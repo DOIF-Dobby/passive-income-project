@@ -7,11 +7,17 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import org.mj.passiveincome.domain.stock.market.MarketType
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 import java.time.LocalDate
 
 @Entity
 class Stock(
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "stock_id")
+  val id: Long = 0L,
 
   val standardCode: String,
   val shortCode: String,
@@ -27,9 +33,5 @@ class Stock(
   @Enumerated(EnumType.STRING)
   val stockType: StockType,
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "stock_id")
-  val id: Long = 0L,
-) : BaseEntity() {
+  ) : BaseEntity() {
 }

@@ -14,6 +14,11 @@ import jakarta.persistence.ManyToOne
 @Entity
 class TradingSignal(
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "trading_signal_id")
+  val id: Long = 0L,
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "trading_strategy_id")
   val tradingStrategy: TradingStrategy,
@@ -22,10 +27,5 @@ class TradingSignal(
   val signal: TradingType,
 
   val quantity: Long,
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "trading_signal_id")
-  val id: Long = 0L,
 ) {
 }

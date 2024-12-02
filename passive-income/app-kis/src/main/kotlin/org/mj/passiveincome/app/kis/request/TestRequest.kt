@@ -22,11 +22,11 @@ class TestRequest(
         it.set("content-type", "application/json")
         it.set(
           "authorization",
-          "Bearer"
+          "Bearer ${kisConfig.accessToken}"
         )
-        it.set("appkey", "")
-        it.set("appsecret", "")
-        it.set("tr_id", "")
+        it.set("appkey", kisConfig.appKey)
+        it.set("appsecret", kisConfig.appSecret)
+        it.set("tr_id", "FHKST01010100")
       }
       .retrieve()
       .body(String::class.java)
