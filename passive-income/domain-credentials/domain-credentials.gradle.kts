@@ -4,7 +4,5 @@ dependencies {
 
   implementation(project(":passive-income:system-core"))
   implementation(project(":passive-income:system-data-jpa"))
-
   implementation(project(":passive-income:domain-user"))
-  implementation(project(":passive-income:domain-stock"))
 }

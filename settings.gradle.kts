@@ -3,9 +3,10 @@ plugins {
 }
 
 include("passive-income")
+include("passive-income:app-api")
 include("passive-income:app-kis")
-include("passive-income:app-service")
 include("passive-income:domain-common")
+include("passive-income:domain-credentials")
 include("passive-income:domain-finance")
 include("passive-income:domain-portfolio")
 include("passive-income:domain-stock")
