@@ -1,4 +1,4 @@
-package org.mj.passiveincome.app.api.features.stock
+package org.mj.passiveincome.app.api.features.stock.service
 
 import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.system.data.findAllWithMap
@@ -12,6 +12,6 @@ class StockService(
 
   @Transactional(readOnly = true)
   fun findStocks(): List<StockResponse> {
-    return stockRepository.findAllWithMap { StockResponse.of(it) }
+    return stockRepository.findAllWithMap { StockResponse.from(it) }
   }
 }

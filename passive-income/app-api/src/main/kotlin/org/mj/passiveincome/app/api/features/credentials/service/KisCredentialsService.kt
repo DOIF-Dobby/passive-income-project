@@ -1,4 +1,4 @@
-package org.mj.passiveincome.app.api.features.user.credentials
+package org.mj.passiveincome.app.api.features.credentials.service
 
 import org.mj.passiveincome.domain.credentials.UserKisCredentials
 import org.mj.passiveincome.domain.credentials.UserKisCredentialsRepository

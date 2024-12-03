@@ -1,4 +1,4 @@
-package org.mj.passiveincome.app.api.features.trading
+package org.mj.passiveincome.app.api.features.trading.service
 
 import org.mj.passiveincome.domain.trading.TradingStrategy
 import org.mj.passiveincome.domain.trading.TradingStrategyRepository

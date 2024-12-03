@@ -1,5 +1,7 @@
-package org.mj.passiveincome.app.api.features.user
+package org.mj.passiveincome.app.api.features.user.controller
 
+import org.mj.passiveincome.app.api.features.user.service.SignUpRequest
+import org.mj.passiveincome.app.api.features.user.service.UserService
 import org.mj.passiveincome.system.core.base.BaseResponseDetail
 import org.mj.passiveincome.system.web.response.BaseResponseContent
 import org.mj.passiveincome.system.web.response.content

@@ -1,4 +1,4 @@
-package org.mj.passiveincome.app.api.features.user.account
+package org.mj.passiveincome.app.api.features.account.service
 
 data class AccountRegisterRequest(
   val userId: Long,
