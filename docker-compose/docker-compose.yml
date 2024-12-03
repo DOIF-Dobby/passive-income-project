@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:12.22
+    container_name: passive-income-postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      TZ: Asia/Seoul
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.8.0
+    container_name: passive-income-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.8.0
+    container_name: passive-income-kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+  redis:
+    image: redis:7.4.1
+    container_name: passive-income-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+    environment:
+      - TZ=Asia/Seoul
