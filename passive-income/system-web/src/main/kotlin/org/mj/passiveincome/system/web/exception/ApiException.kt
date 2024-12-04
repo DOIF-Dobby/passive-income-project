@@ -7,5 +7,9 @@ import org.springframework.http.HttpStatus
 abstract class ApiException(
   val httpStatus: HttpStatus,
   status: BaseStatus = BaseStatus.FAIL,
-  message: String? = status.message,
+  message: String = status.message,
 ) : BaseException(status, message)
+
+open class NotFoundApiException(
+  message: String = "Not found",
+) : ApiException(HttpStatus.NOT_FOUND, message = message)

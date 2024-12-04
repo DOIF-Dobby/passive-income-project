@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 class TradingSignal(
@@ -27,5 +28,5 @@ class TradingSignal(
   val signal: TradingType,
 
   val quantity: Long,
-) {
+) : BaseEntity() {
 }

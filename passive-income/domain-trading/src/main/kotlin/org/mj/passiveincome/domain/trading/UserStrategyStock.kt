@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.user.User
+import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 @Entity
 class UserStrategyStock(
@@ -34,5 +35,5 @@ class UserStrategyStock(
 
   @Enumerated(EnumType.STRING)
   val tradingActivateType: TradingActivateType = TradingActivateType.INACTIVE,
-) {
+) : BaseEntity() {
 }

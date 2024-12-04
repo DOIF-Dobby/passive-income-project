@@ -10,10 +10,20 @@ class UserService(
   private val userRepository: UserRepository,
 ) {
 
+  /**
+   * 사용자 조회
+   */
+  @Transactional(readOnly = true)
+  fun findUser(userId: Long): UserResponse {
+    val user = UserServiceHelper.findUser(userRepository, userId)
+    return UserResponse.of(user)
+  }
+
+
   @Transactional
-  fun signUp(request: SignUpRequest) {
+  fun signUp(payload: CreateUser) {
     val user = User(
-      username = request.username,
+      username = payload.username,
     )
 
     userRepository.save(user)

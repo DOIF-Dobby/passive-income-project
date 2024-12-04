@@ -1,7 +1,7 @@
 package org.mj.passiveincome.app.api.features.credentials.controller
 
-import org.mj.passiveincome.app.api.features.credentials.service.KisCredentialsRegisterRequest
 import org.mj.passiveincome.app.api.features.credentials.service.KisCredentialsService
+import org.mj.passiveincome.app.api.features.credentials.service.RegisterKisCredentials
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -12,7 +12,7 @@ class KisCredentialsController(
 ) {
 
   @PostMapping("/kis-credentials")
-  fun createKisCredentials(@RequestBody request: KisCredentialsRegisterRequest) {
-    kisCredentialsService.registerKisCredentials(request)
+  fun createKisCredentials(@RequestBody payload: RegisterKisCredentials) {
+    kisCredentialsService.registerKisCredentials(payload)
   }
 }

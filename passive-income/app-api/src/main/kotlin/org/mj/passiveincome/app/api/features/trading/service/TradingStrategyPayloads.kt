@@ -2,7 +2,7 @@ package org.mj.passiveincome.app.api.features.trading.service
 
 import org.mj.passiveincome.domain.trading.TradingStrategy
 
-data class TradingStrategyCreateRequest(
+data class CreateTradingStrategy(
   val strategyName: String,
 )
 
@@ -11,7 +11,7 @@ data class TradingStrategyResponse(
   val strategyName: String,
 ) {
   companion object {
-    fun from(tradingStrategy: TradingStrategy) = tradingStrategy.run {
+    fun of(tradingStrategy: TradingStrategy) = tradingStrategy.run {
       TradingStrategyResponse(
         strategyId = id,
         strategyName = name,

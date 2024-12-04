@@ -5,24 +5,24 @@ open class BaseResponse(
   val code: String,
   val message: String,
 ) {
-  
+
   companion object {
-    fun from(status: BaseStatus, message: String? = null): BaseResponse {
+    fun of(status: BaseStatus, message: String = status.message): BaseResponse {
       return BaseResponse(
         code = status.code,
-        message = message ?: status.message,
+        message = message,
       )
     }
 
-    fun ok(message: String? = null): BaseResponse {
-      return from(
+    fun ok(message: String = BaseStatus.SUCCESS.message): BaseResponse {
+      return of(
         status = BaseStatus.SUCCESS,
         message = message,
       )
     }
 
-    fun fail(message: String? = null): BaseResponse {
-      return from(
+    fun fail(message: String = BaseStatus.FAIL.message): BaseResponse {
+      return of(
         status = BaseStatus.FAIL,
         message = message,
       )

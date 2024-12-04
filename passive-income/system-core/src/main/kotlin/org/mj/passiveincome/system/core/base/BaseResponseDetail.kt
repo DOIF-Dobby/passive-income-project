@@ -7,7 +7,7 @@ class BaseResponseDetail<T>(
   val data: T
 ) : BaseResponse(code, message) {
   companion object {
-    fun <T> from(status: BaseStatus, data: T, message: String?): BaseResponseDetail<T> {
+    fun <T> of(status: BaseStatus, data: T, message: String = status.message): BaseResponseDetail<T> {
       return BaseResponseDetail(
         code = status.code,
         message = message ?: status.message,
@@ -15,16 +15,16 @@ class BaseResponseDetail<T>(
       )
     }
 
-    fun <T> ok(data: T, message: String? = null): BaseResponseDetail<T> {
-      return from(
+    fun <T> ok(data: T, message: String = BaseStatus.SUCCESS.message): BaseResponseDetail<T> {
+      return of(
         status = BaseStatus.SUCCESS,
         message = message,
         data = data
       )
     }
 
-    fun <T> fail(data: T, message: String? = null): BaseResponseDetail<T> {
-      return from(
+    fun <T> fail(data: T, message: String = BaseStatus.FAIL.message): BaseResponseDetail<T> {
+      return of(
         status = BaseStatus.FAIL,
         message = message,
         data = data

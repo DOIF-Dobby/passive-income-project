@@ -6,6 +6,18 @@ import org.mj.passiveincome.domain.stock.StockType
 import org.mj.passiveincome.domain.stock.market.MarketType
 import java.time.LocalDate
 
+data class RegisterStock(
+  val standardCode: String,
+  val shortCode: String,
+  val nameKor: String,
+  val shortNameKor: String,
+  val nameEng: String,
+  val listingDate: LocalDate,
+  val marketType: MarketType,
+  val securityType: SecurityType,
+  val stockType: StockType,
+)
+
 data class StockResponse(
   val stockId: Long,
   val standardCode: String,
@@ -21,7 +33,7 @@ data class StockResponse(
   val stockTypeName: String,
 ) {
   companion object {
-    fun from(stock: Stock) = stock.run {
+    fun of(stock: Stock) = stock.run {
       StockResponse(
         stockId = id,
         standardCode = standardCode,

@@ -1,6 +1,6 @@
 package org.mj.passiveincome.app.api.features.user.controller
 
-import org.mj.passiveincome.app.api.features.user.service.SignUpRequest
+import org.mj.passiveincome.app.api.features.user.service.CreateUser
 import org.mj.passiveincome.app.api.features.user.service.UserService
 import org.mj.passiveincome.system.core.base.BaseResponseDetail
 import org.mj.passiveincome.system.web.response.BaseResponseContent
@@ -15,8 +15,8 @@ class UserController(
 ) {
 
   @PostMapping("/users")
-  fun signUp(@RequestBody request: SignUpRequest): BaseResponseContent<String> {
-    userService.signUp(request)
+  fun signUp(@RequestBody payload: CreateUser): BaseResponseContent<String> {
+    userService.signUp(payload)
     return BaseResponseDetail.content(listOf("User created", "Please check your email to verify your account"))
   }
 }
