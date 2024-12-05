@@ -4,6 +4,6 @@ enum class BaseStatus(
   val code: String,
   val message: String,
 ) {
-  SUCCESS("00", "Success"),
+  OK("00", "Ok"),
   FAIL("99", "Fail"),
 }

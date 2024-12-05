@@ -13,17 +13,17 @@ class ControllerExceptionHandler {
 
   @ExceptionHandler(ApiException::class)
   fun handleApiException(e: ApiException): ResponseEntity<BaseResponse> {
-    logger.error { "${e::class.simpleName}: ${e.message}. status:${e.status} httpStatus: ${e.httpStatus}" }
+    logger.error { "${e::class.simpleName}: ${e.message} | localizedMessage: ${e.localizedMessage} | status: ${e.status} | httpStatus: ${e.httpStatus}" }
 
     return ResponseEntity.status(e.httpStatus)
-      .body(BaseResponse.fail(e.message))
+      .body(BaseResponse.fail(e.localizedMessage))
   }
 
   @ExceptionHandler(BaseException::class)
   fun handleBaseException(e: BaseException): ResponseEntity<BaseResponse> {
-    logger.error { "${e::class.simpleName}: ${e.message}. status: ${e.status}" }
+    logger.error { "${e::class.simpleName}: ${e.message} | localizedMessage: ${e.localizedMessage} | status: ${e.status}" }
 
     return ResponseEntity.badRequest()
-      .body(BaseResponse.fail(e.message))
+      .body(BaseResponse.fail(e.localizedMessage))
   }
 }

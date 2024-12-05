@@ -5,7 +5,7 @@ import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.system.data.findByIdOrThrow
 import org.mj.passiveincome.system.web.exception.NotFoundApiException
 
-class StockNotFoundException : NotFoundApiException(message = "주식을 찾을 수 없습니다.")
+class StockNotFoundException : NotFoundApiException(messageProperty = "stock.not-found")
 
 class StockServiceHelper {
 

@@ -5,7 +5,7 @@ import org.mj.passiveincome.domain.user.UserRepository
 import org.mj.passiveincome.system.data.findByIdOrThrow
 import org.mj.passiveincome.system.web.exception.NotFoundApiException
 
-class UserNotFoundException : NotFoundApiException(message = "사용자를 찾을 수 없습니다.")
+class UserNotFoundException : NotFoundApiException(messageProperty = "user.not-found")
 
 class UserServiceHelper {
 

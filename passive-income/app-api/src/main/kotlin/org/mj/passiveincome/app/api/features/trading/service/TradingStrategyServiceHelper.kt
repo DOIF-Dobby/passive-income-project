@@ -5,7 +5,7 @@ import org.mj.passiveincome.domain.trading.TradingStrategyRepository
 import org.mj.passiveincome.system.data.findByIdOrThrow
 import org.mj.passiveincome.system.web.exception.NotFoundApiException
 
-class TradingStrategyNotFoundException : NotFoundApiException(message = "트레이딩 전략을 찾을 수 없습니다.")
+class TradingStrategyNotFoundException : NotFoundApiException(messageProperty = "trading_strategy.not-found")
 
 class TradingStrategyServiceHelper {
 

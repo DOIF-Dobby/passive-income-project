@@ -8,8 +8,22 @@ abstract class ApiException(
   val httpStatus: HttpStatus,
   status: BaseStatus = BaseStatus.FAIL,
   message: String = status.message,
-) : BaseException(status, message)
+  messageProperty: String,
+  messageArguments: Array<Any>? = null,
+) : BaseException(
+  status = status,
+  message = message,
+  messageProperty = messageProperty,
+  messageArguments = messageArguments,
+)
 
-open class NotFoundApiException(
+abstract class NotFoundApiException(
   message: String = "Not found",
-) : ApiException(HttpStatus.NOT_FOUND, message = message)
+  messageProperty: String,
+  messageArguments: Array<Any>? = null,
+) : ApiException(
+  httpStatus = HttpStatus.NOT_FOUND,
+  message = message,
+  messageProperty = messageProperty,
+  messageArguments = messageArguments,
+)
