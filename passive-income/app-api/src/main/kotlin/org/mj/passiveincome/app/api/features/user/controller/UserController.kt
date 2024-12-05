@@ -1,5 +1,6 @@
 package org.mj.passiveincome.app.api.features.user.controller
 
+import jakarta.validation.Valid
 import org.mj.passiveincome.app.api.features.user.service.CreateUser
 import org.mj.passiveincome.app.api.features.user.service.UserService
 import org.mj.passiveincome.system.core.base.BaseResponse
@@ -13,7 +14,7 @@ class UserController(
 ) {
 
   @PostMapping("/users")
-  fun signUp(@RequestBody payload: CreateUser): BaseResponse {
+  fun signUp(@RequestBody @Valid payload: CreateUser): BaseResponse {
     userService.signUp(payload)
     return BaseResponse.ok()
   }
