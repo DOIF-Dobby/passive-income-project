@@ -1,6 +1,5 @@
 package org.mj.passiveincome.app.api.features.stock.service
 
-import jakarta.validation.constraints.NotNull
 import org.mj.passiveincome.domain.stock.SecurityType
 import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.stock.StockType
@@ -15,9 +14,9 @@ data class RegisterStock(
   val nameEng: String,
   val listingDate: LocalDate,
   val marketType: MarketType,
-  @field:NotNull
-  var securityType: SecurityType,
+  val securityType: SecurityType,
   val stockType: StockType,
+  val age: Int,
 )
 
 data class StockResponse(

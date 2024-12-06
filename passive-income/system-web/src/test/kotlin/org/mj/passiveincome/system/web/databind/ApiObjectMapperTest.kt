@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.mj.passiveincome.system.core.extensions.compact
 
 class ApiObjectMapperTest {
 
@@ -14,7 +15,13 @@ class ApiObjectMapperTest {
   @DisplayName("ApiObjectMapper readValue 테스트")
   fun readValueTest() {
     // given
-    val message = "{\"name\":\"MJ\",\"age\":30,\"status\":\"YOUNG\"}"
+    val message = """
+      {
+        "name": "MJ",
+        "age": 30,
+        "status": "YOUNG"
+      }
+      """.compact()
 
     // when
     val person = mapper.readValue(message, Person::class.java)
@@ -30,20 +37,38 @@ class ApiObjectMapperTest {
   fun writeValueAsStringTest() {
     // given
     val person = Person("MJ", 30, PersonStatus.YOUNG)
+    val expectedMessage = """
+      {
+        "name": "MJ",
+        "age": 30,
+        "status": "YOUNG"
+      }
+      """.compact()
 
     // when
     val message = mapper.writeValueAsString(person)
 
     // then
-    assertThat(message).isEqualTo("{\"name\":\"MJ\",\"age\":30,\"status\":\"YOUNG\"}")
+    assertThat(message).isEqualTo(expectedMessage)
   }
 
   @Test
   @DisplayName("readValue 시, enum 값을 컨버팅 할 수 없는 경우 예외 발생 테스트")
   fun whenReadValueEnumConvertFail() {
     // given
-    val message1 = "{\"name\":\"MJ\",\"age\":30,\"status\":\"HELLO\"}"
-    val message2 = "{\"name\":\"MJ\",\"age\":30}"
+    val message1 = """
+      {
+        "name": "MJ",
+        "age": 30,
+        "status": "HELLO"
+      }
+      """.compact()
+    val message2 = """
+      {
+        "name": "MJ",
+        "age": 30
+      }
+    """.compact()
 
     // when & then
     assertThrows<MismatchedInputException> { mapper.readValue(message1, Person::class.java) }
@@ -61,7 +86,12 @@ class ApiObjectMapperTest {
   @DisplayName("readValue 시, primitive 값에 null이 들어오는 경우 예외 발생 테스트")
   fun whenReadValuePrimitiveNull() {
     // given
-    val message1 = "{\"name\":\"MJ\",\"status\":\"OLD\"}"
+    val message1 = """
+      {
+        "name": "MJ",
+        "status": "OLD"
+      }
+    """.compact()
 
     // when & then
     assertThrows<MismatchedInputException> { mapper.readValue(message1, Person::class.java) }

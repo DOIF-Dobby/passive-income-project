@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 val loggerCache = ConcurrentHashMap<Class<*>, Logger>()
 
-inline val <reified T> T.logger: Logger
+inline val <reified T> T.log: Logger
   get() {
     return loggerCache.getOrPut(T::class.java) {
       LoggerFactory.getLogger(T::class.java)

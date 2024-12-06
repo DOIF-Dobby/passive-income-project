@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import org.mj.passiveincome.system.core.logging.logger
+import org.mj.passiveincome.system.core.logging.log
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.StringRedisTemplate
@@ -45,7 +45,7 @@ class RedisCommand(
     try {
       return objectMapper.writeValueAsString(value)
     } catch (e: Exception) {
-      logger.error("Failed to serialize value")
+      log.error("Failed to serialize value")
       throw RedisSerializationException()
     }
   }
@@ -58,7 +58,7 @@ class RedisCommand(
     try {
       return objectMapper.readValue(value, classType.java)
     } catch (e: Exception) {
-      logger.error("Failed to deserialize value: $value")
+      log.error("Failed to deserialize value: $value")
       throw RedisDeserializationException()
     }
   }
