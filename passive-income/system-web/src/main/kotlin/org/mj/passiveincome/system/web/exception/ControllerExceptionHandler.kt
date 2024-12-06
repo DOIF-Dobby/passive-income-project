@@ -36,7 +36,7 @@ class ControllerExceptionHandler {
   }
 
   /**
-   * BindException 처리
+   * BindException 처리 (Validation 검증 실패 시 발생)
    */
   @ExceptionHandler(BindException::class)
   fun handleBindException(e: BindException): ResponseEntity<BaseResponseDetail<Map<String, String>>> {
@@ -46,8 +46,8 @@ class ControllerExceptionHandler {
     val invalidFieldMap = mutableMapOf<String, String>()
     val bindingResult = e.bindingResult
 
-    bindingResult.fieldErrors.forEach { fieldError ->
-      invalidFieldMap[fieldError.field] = fieldError.defaultMessage ?: ""
+    bindingResult.fieldErrors.forEach {
+      invalidFieldMap[it.field] = it.defaultMessage ?: ""
     }
 
 

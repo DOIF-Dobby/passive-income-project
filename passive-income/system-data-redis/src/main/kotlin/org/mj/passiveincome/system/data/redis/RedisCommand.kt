@@ -11,11 +11,9 @@ import org.mj.passiveincome.system.core.logging.logger
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.StringRedisTemplate
-import org.springframework.stereotype.Service
 import java.time.Duration
 import kotlin.reflect.KClass
 
-@Service
 class RedisCommand(
   redisConnectionFactory: RedisConnectionFactory,
 ) {
@@ -25,8 +23,8 @@ class RedisCommand(
   private val objectMapper: ObjectMapper = ObjectMapper().apply {
     registerKotlinModule()
     registerModules(JavaTimeModule())
-    configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
     configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+    configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
     setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
     setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
   }

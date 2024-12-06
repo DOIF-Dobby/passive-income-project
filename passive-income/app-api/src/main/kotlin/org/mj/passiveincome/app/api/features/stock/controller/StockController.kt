@@ -1,5 +1,6 @@
 package org.mj.passiveincome.app.api.features.stock.controller
 
+import jakarta.validation.Valid
 import org.mj.passiveincome.app.api.features.stock.service.RegisterStock
 import org.mj.passiveincome.app.api.features.stock.service.StockResponse
 import org.mj.passiveincome.app.api.features.stock.service.StockService
@@ -23,7 +24,7 @@ class StockController(
   }
 
   @PostMapping("/stocks")
-  fun registerStock(@RequestBody payload: RegisterStock): BaseResponse {
+  fun registerStock(@RequestBody @Valid payload: RegisterStock): BaseResponse {
     stockService.registerStock(payload)
     return BaseResponse.ok()
   }

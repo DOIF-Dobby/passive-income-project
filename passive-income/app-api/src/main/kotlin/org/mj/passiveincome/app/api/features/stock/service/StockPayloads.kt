@@ -14,9 +14,9 @@ data class RegisterStock(
   val shortNameKor: String,
   val nameEng: String,
   val listingDate: LocalDate,
-  @field:NotNull
   val marketType: MarketType,
-  val securityType: SecurityType,
+  @field:NotNull
+  var securityType: SecurityType,
   val stockType: StockType,
 )
 
