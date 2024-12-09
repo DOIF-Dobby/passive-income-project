@@ -20,6 +20,9 @@ class UserService(
   }
 
 
+  /**
+   * 사용자 등록
+   */
   @Transactional
   fun signUp(payload: CreateUser) {
     val user = User(

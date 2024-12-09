@@ -13,6 +13,9 @@ class UserController(
   private val userService: UserService,
 ) {
 
+  /**
+   * 사용자 등록 API
+   */
   @PostMapping("/users")
   fun signUp(@RequestBody @Valid payload: CreateUser): BaseResponse {
     userService.signUp(payload)
