@@ -10,6 +10,9 @@ class UserNotFoundException : NotFoundApiException(messageProperty = "user.not-f
 class UserServiceHelper {
 
   companion object {
+    /**
+     * 사용자 조회
+     */
     fun findUser(repository: UserRepository, userId: Long): User {
       return repository.findByIdOrThrow(userId) { throw UserNotFoundException() }
     }

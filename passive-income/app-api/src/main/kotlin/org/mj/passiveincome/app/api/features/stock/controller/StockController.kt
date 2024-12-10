@@ -18,11 +18,17 @@ class StockController(
   private val stockService: StockService
 ) {
 
+  /**
+   * 주식 목록 조회
+   */
   @GetMapping("/stocks")
   fun findStocks(): BaseResponseContent<StockResponse> {
     return BaseResponseDetail.content(stockService.findStocks())
   }
 
+  /**
+   * 주식 등록
+   */
   @PostMapping("/stocks")
   fun registerStock(@RequestBody @Valid payload: RegisterStock): BaseResponse {
     stockService.registerStock(payload)

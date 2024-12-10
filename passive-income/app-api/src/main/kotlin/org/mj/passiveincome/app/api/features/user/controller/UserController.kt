@@ -14,7 +14,7 @@ class UserController(
 ) {
 
   /**
-   * 사용자 등록 API
+   * 사용자 등록
    */
   @PostMapping("/users")
   fun signUp(@RequestBody @Valid payload: CreateUser): BaseResponse {

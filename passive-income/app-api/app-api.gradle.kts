@@ -17,8 +17,9 @@ dependencies {
   implementation(project(":passive-income:domain-common"))
   implementation(project(":passive-income:domain-credentials"))
   implementation(project(":passive-income:domain-user"))
-  implementation(project(":passive-income:domain-stock"))
   implementation(project(":passive-income:domain-finance"))
+  implementation(project(":passive-income:domain-portfolio"))
+  implementation(project(":passive-income:domain-stock"))
   implementation(project(":passive-income:domain-trading"))
 
 

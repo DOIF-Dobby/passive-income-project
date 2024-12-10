@@ -10,6 +10,9 @@ class StockNotFoundException : NotFoundApiException(messageProperty = "stock.not
 class StockServiceHelper {
 
   companion object {
+    /**
+     * 주식 조회
+     */
     fun findStock(repository: StockRepository, stockId: Long): Stock {
       return repository.findByIdOrThrow(stockId) { throw StockNotFoundException() }
     }

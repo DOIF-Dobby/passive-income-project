@@ -6,6 +6,9 @@ import org.mj.passiveincome.domain.stock.StockType
 import org.mj.passiveincome.domain.stock.market.MarketType
 import java.time.LocalDate
 
+/**
+ * 주식 등록
+ */
 data class RegisterStock(
   val standardCode: String,
   val shortCode: String,
@@ -19,6 +22,9 @@ data class RegisterStock(
   val age: Int,
 )
 
+/**
+ * 주식 응답
+ */
 data class StockResponse(
   val stockId: Long,
   val standardCode: String,

@@ -10,6 +10,9 @@ class TradingStrategyNotFoundException : NotFoundApiException(messageProperty = 
 class TradingStrategyServiceHelper {
 
   companion object {
+    /**
+     * 거래 전략 조회
+     */
     fun findTradingStrategy(repository: TradingStrategyRepository, tradingStrategyId: Long): TradingStrategy {
       return repository.findByIdOrThrow(tradingStrategyId) { throw TradingStrategyNotFoundException() }
     }

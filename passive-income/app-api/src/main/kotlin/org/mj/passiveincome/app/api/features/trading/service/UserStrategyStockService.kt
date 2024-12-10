@@ -1,7 +1,6 @@
-package org.mj.passiveincome.app.api.features.trading.facade
+package org.mj.passiveincome.app.api.features.trading.service
 
 import org.mj.passiveincome.app.api.features.stock.service.StockServiceHelper
-import org.mj.passiveincome.app.api.features.trading.service.TradingStrategyServiceHelper
 import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.domain.trading.TradingStrategyRepository
@@ -11,7 +10,7 @@ import org.mj.passiveincome.domain.user.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
-class TradingStrategyFacade(
+class UserStrategyStockService(
   private val userRepository: UserRepository,
   private val stockRepository: StockRepository,
   private val tradingStrategyRepository: TradingStrategyRepository,
