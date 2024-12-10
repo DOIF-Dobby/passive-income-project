@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import org.mj.passiveincome.system.core.base.BaseException
 import org.mj.passiveincome.system.core.base.BaseResponse
 import org.mj.passiveincome.system.core.base.BaseResponseDetail
+import org.mj.passiveincome.system.core.base.messageAccessor
 import org.mj.passiveincome.system.core.logging.error
 import org.mj.passiveincome.system.core.logging.log
 import org.springframework.http.ResponseEntity
@@ -16,6 +17,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class ControllerExceptionHandler {
 
   /**
+   * Exception 처리
+   */
+  @ExceptionHandler(Exception::class)
+  fun handleException(e: Exception): ResponseEntity<BaseResponse> {
+    log.error { "${e::class.simpleName}: ${e.message}" }
+
+    return ResponseEntity.internalServerError()
+      .body(BaseResponse.fail())
+  }
+
+  /**
    * ApiException 처리
    */
   @ExceptionHandler(ApiException::class)
@@ -23,7 +35,12 @@ class ControllerExceptionHandler {
     log.error { "${e::class.simpleName}: ${e.message} | localizedMessage: ${e.localizedMessage} | status: ${e.status} | httpStatus: ${e.httpStatus}" }
 
     return ResponseEntity.status(e.httpStatus)
-      .body(BaseResponse.fail(e.localizedMessage))
+      .body(
+        BaseResponse(
+          code = e.status.code,
+          message = e.localizedMessage
+        )
+      )
   }
 
   /**
@@ -34,7 +51,12 @@ class ControllerExceptionHandler {
     log.error { "${e::class.simpleName}: ${e.message} | localizedMessage: ${e.localizedMessage} | status: ${e.status}" }
 
     return ResponseEntity.badRequest()
-      .body(BaseResponse.fail(e.localizedMessage))
+      .body(
+        BaseResponse(
+          code = e.status.code,
+          message = e.localizedMessage
+        )
+      )
   }
 
   /**
@@ -56,7 +78,7 @@ class ControllerExceptionHandler {
       .body(
         BaseResponseDetail.fail(
           data = invalidFieldMap,
-          message = "Invalid request"
+          message = messageAccessor.getMessage("web.error.invalid-request-data")
         )
       )
   }
@@ -97,7 +119,7 @@ class ControllerExceptionHandler {
       .body(
         BaseResponseDetail.fail(
           data = invalidFieldMap,
-          message = "Invalid request"
+          message = messageAccessor.getMessage("web.error.invalid-request-data")
         )
       )
   }

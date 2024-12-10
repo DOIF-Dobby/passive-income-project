@@ -3,6 +3,7 @@ package org.mj.passiveincome.system.core.base
 import org.mj.passiveincome.system.core.base.BaseResourceMessageSource.Companion.getAccessor
 import org.springframework.context.support.MessageSourceAccessor
 import org.springframework.context.support.ResourceBundleMessageSource
+import org.springframework.core.io.PathResource
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
 
 /**
@@ -12,6 +13,7 @@ class BaseResourceMessageSource : ResourceBundleMessageSource() {
   init {
     val messageBundle = getMessageBundle()
     setBasenames(*messageBundle)
+    defaultEncoding = "UTF-8"
   }
 
   companion object {
@@ -27,7 +29,15 @@ class BaseResourceMessageSource : ResourceBundleMessageSource() {
       val resources = resolver.getResources("classpath*:messages/*.properties")
 
       return resources.map { resource ->
-        val nameWithoutExtension = resource.file.nameWithoutExtension
+
+        val resourcePath = resource.uri.toString()
+        val messageResource = if (resourcePath.startsWith("jar:")) {
+          PathResource(resourcePath.drop(4))
+        } else {
+          resource
+        }
+
+        val nameWithoutExtension = messageResource.file.nameWithoutExtension
         val basename = nameWithoutExtension.substring(0, nameWithoutExtension.lastIndexOf("_"))
         "messages/$basename"
       }.toSet().toTypedArray()

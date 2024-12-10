@@ -1,6 +1,8 @@
 dependencies {
   implementation("org.springframework:spring-context")
   implementation("org.springframework:spring-web")
+  implementation("org.springframework:spring-webmvc")
+  implementation("jakarta.servlet:jakarta.servlet-api")
   implementation("com.fasterxml.jackson.core:jackson-databind")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")

@@ -15,7 +15,7 @@ class BaseResponseDetail<T>(
       )
     }
 
-    fun <T> ok(data: T, message: String = getBundleMessage(code = "base.success", defaultMessage = BaseStatus.OK.message)): BaseResponseDetail<T> {
+    fun <T> ok(data: T, message: String = getBundleMessage(code = "base.ok", defaultMessage = BaseStatus.OK.message)): BaseResponseDetail<T> {
       return of(
         status = BaseStatus.OK,
         message = message,

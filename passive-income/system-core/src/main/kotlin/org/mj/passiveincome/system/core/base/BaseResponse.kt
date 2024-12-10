@@ -13,7 +13,7 @@ open class BaseResponse(
       )
     }
 
-    fun ok(message: String = getBundleMessage(code = "base.success", defaultMessage = BaseStatus.OK.message)): BaseResponse {
+    fun ok(message: String = getBundleMessage(code = "base.ok", defaultMessage = BaseStatus.OK.message)): BaseResponse {
       return of(
         status = BaseStatus.OK,
         message = message,
