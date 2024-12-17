@@ -20,6 +20,8 @@ tasks.bootJar {
 // 서브 모듈이지만 directory인 모듈들
 val directoryModules = arrayOf(":passive-income")
 
+val kotestVersion = "5.9.1"
+
 allprojects {
   group = "org.mj.passiveincome"
 
@@ -60,6 +62,8 @@ subprojects {
     testImplementation("org.springframework.boot:spring-boot-starter-test") // 테스트 편의상
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
   }
 
   allOpen {
