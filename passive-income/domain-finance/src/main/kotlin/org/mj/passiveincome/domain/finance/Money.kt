@@ -9,39 +9,32 @@ import java.math.BigDecimal
 class Money(
   @Enumerated(EnumType.STRING)
   val currency: Currency,
-  val amount: BigDecimal,
+  amount: BigDecimal,
 ) : Comparable<Money> {
 
-  init {
-    // 소수점이 붙으면 안되는 통화 타입의 경우, 소수점이 있으면 해당 값이 0인지 확인
-    // 0이 아니면 Money 객체 생성 불가
-    if (currency.scale == 0 && amount.scale() > 0) {
-      val decimalPart = amount.remainder(BigDecimal.ONE)
-      require(decimalPart.compareTo(BigDecimal.ZERO) == 0) { throw NonFractionalCurrencyException() }
-    }
-  }
+  // 통화 타입에 맞는 자릿수 만큼 roundingMode 적용해서 금액 설정
+  val amount: BigDecimal = amount.setScale(currency.scale, currency.roundingMode)
 
   val isKrw get() = currency == Currency.KRW
   val isUsd get() = currency == Currency.USD
 
   fun isSameCurrency(other: Money) = currency == other.currency
 
-  fun exchangeKrw(exchangeRate: Double): Money {
-    require(currency == Currency.USD) { throw IllegalArgumentException("Only USD can be converted to KRW") }
-    val changedAmount = amount * BigDecimal(exchangeRate)
-    return krw(changedAmount.setScale(Currency.KRW.scale, Currency.KRW.roundingMode))
-  }
-
   fun formatted(): String {
     val scaledAmount = amount.setScale(currency.scale, currency.roundingMode)
     return "$currency ${currency.decimalFormat.format(scaledAmount)}"
   }
 
-  // 공통 검사 메서드
+  /**
+   * 두 Money 객체의 통화가 같은지 검증
+   */
   private fun validateSameCurrency(other: Money) {
     require(currency == other.currency) { throw CurrencyMismatchException() }
   }
 
+  /**
+   * 두 Money 객체의 통화가 같은지 검증 후 사칙연산 수행
+   */
   private fun operateMoney(other: Money, operator: (BigDecimal, BigDecimal) -> BigDecimal): Money {
     validateSameCurrency(other)
     return Money(currency, operator(amount, other.amount))
@@ -51,8 +44,6 @@ class Money(
   operator fun minus(other: Money) = operateMoney(other) { a, b -> a - b }
   operator fun times(other: Number) = Money(currency, amount * BigDecimal(other.toString()))
   operator fun div(other: Number) = Money(currency, amount.divide(BigDecimal(other.toString()), currency.scale, currency.roundingMode))
-
-  operator fun compareTo(other: Number) = amount.compareTo(BigDecimal(other.toString()))
 
   override fun compareTo(other: Money): Int {
     validateSameCurrency(other)
