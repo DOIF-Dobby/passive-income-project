@@ -64,6 +64,8 @@ subprojects {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.3.0")
+    testImplementation("io.mockk:mockk:1.13.13")
   }
 
   allOpen {

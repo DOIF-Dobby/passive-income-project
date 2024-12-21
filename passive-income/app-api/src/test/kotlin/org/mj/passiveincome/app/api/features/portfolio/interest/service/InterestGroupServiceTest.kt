@@ -1,32 +1,50 @@
 package org.mj.passiveincome.app.api.features.portfolio.interest.service
 
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.collections.shouldHaveSize
+import org.mj.passiveincome.app.api.config.JpaConfig
+import org.mj.passiveincome.domain.portfolio.interest.InterestGroup
+import org.mj.passiveincome.domain.portfolio.interest.InterestGroupRepository
+import org.mj.passiveincome.domain.user.User
+import org.mj.passiveincome.domain.user.UserRepository
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.context.TestConstructor
 
-@SpringBootTest
+@DataJpaTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+@Import(JpaConfig::class)
 class InterestGroupServiceTest(
-  val interestGroupService: InterestGroupService,
-) {
+  val interestGroupRepository: InterestGroupRepository,
+  val userRepository: UserRepository,
+) : DescribeSpec() {
 
-//  private val interestGroupService = InterestGroupService(
-//    interestGroupRepository = interestGroupRepository,
-//    userRepository = userRepository,
-//  )
+  override fun extensions() = listOf(SpringExtension)
 
-//  @Autowired
-//  private lateinit var interestGroupService: InterestGroupService
+  private val interestGroupService = InterestGroupService(interestGroupRepository, userRepository)
 
-  @Test
-  @DisplayName("관심 그룹 생성 테스트")
-  fun createInterestGroupTest() {
-    // given
-    interestGroupService.findInterestGroups(1L)
+  init {
+    beforeEach {
+      val user1 = userRepository.save(User(username = "Test User1"))
+      val user2 = userRepository.save(User(username = "Test User2"))
 
-    // when
+      interestGroupRepository.saveAll(
+        listOf(
+          InterestGroup(name = "Group 1", user = user1),
+          InterestGroup(name = "Group 2", user = user1),
+          InterestGroup(name = "Group 3", user = user2),
+        )
+      )
+    }
 
-    // then
+    this.describe("findInterestGroups") {
+      context("사용자 ID가 주어지면") {
+        it("해당 사용자의 관심 그룹 목록을 반환한다.") {
+          val findInterestGroups = interestGroupService.findInterestGroups(1L)
+          findInterestGroups shouldHaveSize 2
+        }
+      }
+    }
   }
 }

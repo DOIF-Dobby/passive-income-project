@@ -1,7 +1,6 @@
 package org.mj.passiveincome.system.web.exception
 
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.DescribeSpec
 import org.mj.passiveincome.system.core.base.BaseResponse
 import org.mj.passiveincome.system.core.base.messageAccessor
 import org.springframework.boot.autoconfigure.AutoConfigurations
@@ -18,76 +17,81 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import java.util.Locale
 
-class ControllerExceptionHandlerTest {
+class ControllerExceptionHandlerTest : DescribeSpec({
+  describe("Controller Exception Handler Test") {
+    context("Exception이 발생하지 않은 경우") {
 
-  private val contextRunner = WebApplicationContextRunner()
-    .withConfiguration(
-      AutoConfigurations.of(
-        WebMvcAutoConfiguration::class.java,
-        MockMvcAutoConfiguration::class.java,
-      )
-    )
-    .withUserConfiguration(ControllerExceptionHandler::class.java)
-    .withUserConfiguration(TestController::class.java)
+      val request = post("/person").locale(Locale.KOREAN)
+        .content("""{"name":"MJ", "age":30}""")
+        .contentType("application/json")
 
-  @Test
-  @DisplayName("정상 테스트")
-  fun okTest() {
-    contextRunner.run { context ->
-      val mockMvc = context.getBean(MockMvc::class.java)
+      it("200 응답") {
+        runTestWithContext { mockMvc ->
+          mockMvc.perform(request)
+            .andExpect(status().isOk)
+            .andExpect(content().json("""{"code":"00","message":"${messageAccessor.getMessage("base.ok")}"}"""))
+        }
+      }
+    }
 
-      mockMvc.perform(
-        post("/person").locale(Locale.KOREAN)
-          .content("""{"name":"MJ", "age":30}""")
-          .contentType("application/json")
-      )
-        .andExpect(status().isOk)
-        .andExpect(content().json("""{"code":"00","message":"${messageAccessor.getMessage("base.ok")}"}"""))
+    context("non-null property에 null로 요청한 경우") {
+      val request = post("/person").locale(Locale.KOREAN)
+        .content("""{"name":null, "age":30}""")
+        .contentType("application/json")
+
+      it("400 응답") {
+        runTestWithContext { mockMvc ->
+          mockMvc.perform(request)
+            .andExpect(status().isBadRequest)
+            .andExpect(content().json("""{"code":"99","message":"${messageAccessor.getMessage("web.error.invalid-request-data")}"}"""))
+        }
+      }
+    }
+
+    context("Exception이 발생한 경우") {
+      val request = post("/throw").locale(Locale.KOREAN)
+
+      it("500 응답") {
+        runTestWithContext { mockMvc ->
+          mockMvc.perform(request)
+            .andExpect(status().isInternalServerError)
+            .andExpect(content().json("""{"code":"99","message":"${messageAccessor.getMessage("base.fail")}"}"""))
+        }
+      }
+    }
+
+    context("ApiException이 발생한 경우") {
+      val request = post("/throw-api-ex").locale(Locale.KOREAN)
+
+      it("ApiException의 HttpStatus와 message로 응답") {
+        runTestWithContext { mockMvc ->
+          mockMvc.perform(request)
+            .andExpect(status().isNotFound)
+            .andExpect(content().json("""{"code":"99","message":"실패 테스트"}"""))
+        }
+      }
     }
   }
+}) {
 
-  @Test
-  @DisplayName("non-null property null 요청")
-  fun nonNullPropertySetNullTest() {
-    contextRunner.run { context ->
-      val mockMvc = context.getBean(MockMvc::class.java)
-
-      mockMvc.perform(
-        post("/person").locale(Locale.KOREAN)
-          .content("""{"name":null, "age":30}""")
-          .contentType("application/json")
+  companion object {
+    private val contextRunner = WebApplicationContextRunner()
+      .withConfiguration(
+        AutoConfigurations.of(
+          WebMvcAutoConfiguration::class.java,
+          MockMvcAutoConfiguration::class.java,
+        )
       )
-        .andExpect(status().isBadRequest)
-        .andExpect(content().json("""{"code":"99","message":"${messageAccessor.getMessage("web.error.invalid-request-data")}"}"""))
+      .withUserConfiguration(ControllerExceptionHandler::class.java)
+      .withUserConfiguration(TestController::class.java)
+
+    private fun runTestWithContext(assertions: (MockMvc) -> Unit) {
+      contextRunner.run { context ->
+        val mockMvc = context.getBean(MockMvc::class.java)
+        assertions(mockMvc)
+      }
     }
-  }
 
-  @Test
-  @DisplayName("throw exception")
-  fun throwExTest() {
-    contextRunner.run { context ->
-      val mockMvc = context.getBean(MockMvc::class.java)
-
-      mockMvc.perform(
-        post("/throw").locale(Locale.KOREAN)
-      )
-        .andExpect(status().isInternalServerError)
-        .andExpect(content().json("""{"code":"99","message":"${messageAccessor.getMessage("base.fail")}"}"""))
-    }
-  }
-
-  @Test
-  @DisplayName("throw api exception")
-  fun throwApiExTest() {
-    contextRunner.run { context ->
-      val mockMvc = context.getBean(MockMvc::class.java)
-
-      mockMvc.perform(
-        post("/throw-api-ex").locale(Locale.KOREAN)
-      )
-        .andExpect(status().isNotFound)
-        .andExpect(content().json("""{"code":"99","message":"실패 테스트"}"""))
-    }
   }
 }
 

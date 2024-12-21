@@ -1,24 +1,28 @@
 package org.mj.passiveincome.system.core.extensions
 
+import io.kotest.core.spec.style.DescribeSpec
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
 
-class StringExtensionsTest {
+class StringExtensionsTest : DescribeSpec({
 
-  @Test
-  @DisplayName("compact 테스트")
-  fun compactTest() {
-    // given
-    val message = """
-      Hello
-      World
-    """
+  describe("compact") {
+    it("모든 공백, 줆바꿈이 제거된 문자를 반환한다") {
+      // given
+      val message = """
 
-    // when
-    val result = message.compact()
 
-    // then
-    assertThat(result).isEqualTo("HelloWorld")
+          Hello
+
+          World
+
+
+        """
+
+      // when
+      val result = message.compact()
+
+      // then
+      assertThat(result).isEqualTo("HelloWorld")
+    }
   }
-}
+})
