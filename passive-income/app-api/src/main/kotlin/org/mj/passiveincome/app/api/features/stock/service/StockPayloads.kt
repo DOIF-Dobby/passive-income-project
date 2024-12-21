@@ -19,7 +19,6 @@ data class RegisterStock(
   val marketType: MarketType,
   val securityType: SecurityType,
   val stockType: StockType,
-  val age: Int,
 )
 
 /**
