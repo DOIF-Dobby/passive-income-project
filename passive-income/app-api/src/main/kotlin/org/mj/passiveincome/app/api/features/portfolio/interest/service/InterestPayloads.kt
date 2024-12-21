@@ -56,12 +56,14 @@ data class RecentlyViewedStockResponse(
 data class InterestGroupResponse(
   val id: Long,
   val groupName: String,
+  val userId: Long,
 ) {
   companion object {
     fun of(interestGroup: InterestGroup) = interestGroup.run {
       InterestGroupResponse(
         id = id,
         groupName = name,
+        userId = user.id,
       )
     }
   }
