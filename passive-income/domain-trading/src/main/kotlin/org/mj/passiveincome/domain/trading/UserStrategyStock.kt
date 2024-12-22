@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.user.User
+import org.mj.passiveincome.system.core.event.EventPublisher
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 /**
@@ -46,6 +47,7 @@ class UserStrategyStock(
    */
   fun activate() {
     tradingActivateStatus = TradingActivateStatus.ACTIVE
+    EventPublisher.publishEvent(UserStrategyStockActivatedEvent(id))
   }
 
   /**
@@ -53,5 +55,6 @@ class UserStrategyStock(
    */
   fun deactivate() {
     tradingActivateStatus = TradingActivateStatus.INACTIVE
+    EventPublisher.publishEvent(UserStrategyStockDeactivatedEvent(id))
   }
 }
