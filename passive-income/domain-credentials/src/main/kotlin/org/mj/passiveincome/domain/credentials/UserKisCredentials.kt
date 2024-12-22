@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.user.User
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 사용자 KIS 인증 정보 Entity
+ */
 @Entity
 class UserKisCredentials(
   @Id

@@ -20,7 +20,7 @@ class StockServiceTest(
   val stockService = StockService(stockRepository)
 
   describe("findStocks") {
-    stockRepository.saveAll(StockFixtures.defaultStocks())
+    stockRepository.saveAll(StockFixtures.stocks())
 
     it("주식 목록을 반환한다.") {
       val results = stockService.findStocks()
@@ -29,7 +29,7 @@ class StockServiceTest(
   }
 
   describe("findStock") {
-    val savedStocks = stockRepository.saveAll(StockFixtures.defaultStocks())
+    val savedStocks = stockRepository.saveAll(StockFixtures.stocks())
 
     context("주식 Entity ID가 주어지면") {
       val findStockId = savedStocks[0].id
@@ -53,7 +53,7 @@ class StockServiceTest(
     context("존재 하지 않는 주식 Entity ID가 주어지면") {
       it("StockNotFoundException이 발생한다.") {
         shouldThrow<StockNotFoundException> {
-          stockService.findStock(9999)
+          stockService.findStock(-1)
         }
       }
     }

@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.user.User
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 사용자 계좌 Entity
+ */
 @Entity
 class UserAccount(
   @Id

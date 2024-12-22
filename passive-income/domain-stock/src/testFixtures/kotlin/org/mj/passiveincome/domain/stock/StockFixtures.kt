@@ -41,6 +41,6 @@ class StockFixtures {
       stockType = StockType.COMMON,
     )
 
-    fun defaultStocks() = listOf(stockSamsung(), stockNaver(), stockKakao())
+    fun stocks() = listOf(stockSamsung(), stockNaver(), stockKakao())
   }
 }

@@ -8,6 +8,7 @@ import org.mj.passiveincome.domain.trading.UserStrategyStock
 import org.mj.passiveincome.domain.trading.UserStrategyStockRepository
 import org.mj.passiveincome.domain.user.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserStrategyStockService(
@@ -20,6 +21,7 @@ class UserStrategyStockService(
   /**
    * 거래 전략에 주식 등록
    */
+  @Transactional
   fun registerStockToTradingStrategy(payload: RegisterUserStrategyStock) {
     val user = UserServiceHelper.findUser(userRepository, payload.userId)
     val stock = StockServiceHelper.findStock(stockRepository, payload.stockId)

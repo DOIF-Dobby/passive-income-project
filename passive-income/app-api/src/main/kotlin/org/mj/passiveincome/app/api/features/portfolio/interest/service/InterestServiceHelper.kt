@@ -10,6 +10,9 @@ class InterestGroupNotFoundException : NotFoundApiException(messageProperty = "i
 class InterestServiceHelper {
 
   companion object {
+    /**
+     * 관심 그룹 조회
+     */
     fun findInterestGroup(repository: InterestGroupRepository, groupId: Long): InterestGroup {
       return repository.findByIdOrThrow(groupId) { throw InterestGroupNotFoundException() }
     }

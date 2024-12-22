@@ -12,6 +12,9 @@ import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.user.User
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 관심 주식 Entity
+ */
 @Entity
 class InterestStock(
 

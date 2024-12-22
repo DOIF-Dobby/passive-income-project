@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.user.User
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 관심 그룹 Entity
+ */
 @Entity
 class InterestGroup(
 

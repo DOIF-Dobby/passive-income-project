@@ -38,6 +38,7 @@ data class RecentlyViewedStockResponse(
   val id: Long,
   val stockId: Long,
   val stockName: String,
+  val stockShortName: String,
 ) {
   companion object {
     fun of(recentlyViewedStock: RecentlyViewedStock) = recentlyViewedStock.run {
@@ -45,6 +46,7 @@ data class RecentlyViewedStockResponse(
         id = id,
         stockId = stock.id,
         stockName = stock.nameKor,
+        stockShortName = stock.shortNameKor,
       )
     }
   }
@@ -76,6 +78,7 @@ data class InterestStockResponse(
   val id: Long,
   val stockId: Long,
   val stockName: String,
+  val stockShortName: String,
 ) {
   companion object {
     fun of(interestStock: InterestStock) = interestStock.run {
@@ -83,6 +86,7 @@ data class InterestStockResponse(
         id = id,
         stockId = stock.id,
         stockName = stock.nameKor,
+        stockShortName = stock.shortNameKor,
       )
     }
   }

@@ -7,6 +7,7 @@ import org.mj.passiveincome.domain.portfolio.interest.RecentlyViewedStockReposit
 import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.domain.user.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class RecentlyViewedStockService(
@@ -18,6 +19,7 @@ class RecentlyViewedStockService(
   /**
    * 최근 본 주식 추가
    */
+  @Transactional
   fun addRecentlyViewedStock(payload: AddRecentlyViewedStock) {
     val recentlyViewedStock = RecentlyViewedStock(
       user = UserServiceHelper.findUser(userRepository, payload.userId),
@@ -30,6 +32,7 @@ class RecentlyViewedStockService(
   /**
    * 사용자 최근 본 주식 목록 조회
    */
+  @Transactional(readOnly = true)
   fun findRecentlyViewedStocks(userId: Long): List<RecentlyViewedStockResponse> {
     return recentlyViewedStockRepository.findRecentlyViewedStocks(userId)
       .map { RecentlyViewedStockResponse.of(it) }

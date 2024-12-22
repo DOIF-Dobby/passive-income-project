@@ -5,3 +5,7 @@ dependencies {
   implementation(project(":passive-income:system-core"))
   implementation(project(":passive-income:system-data-jpa"))
 }
+
+apply {
+  plugin("java-test-fixtures")
+}

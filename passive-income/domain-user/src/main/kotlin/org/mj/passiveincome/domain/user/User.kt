@@ -10,6 +10,9 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 사용자 Entity
+ */
 @Entity
 @Table(name = "users")
 class User(

@@ -11,6 +11,9 @@ import org.mj.passiveincome.domain.stock.market.MarketType
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 import java.time.LocalDate
 
+/**
+ * 주식 Entity
+ */
 @Entity
 class Stock(
 

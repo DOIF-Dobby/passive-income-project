@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne
 import org.mj.passiveincome.domain.stock.Stock
 import org.mj.passiveincome.domain.user.User
 
+/**
+ * 최근 본 주식 Entity
+ */
 @Entity
 class RecentlyViewedStock(
 

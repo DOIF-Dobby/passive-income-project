@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
+/**
+ * 거래 전략 Entity
+ */
 @Entity
 class TradingStrategy(
 
@@ -19,5 +22,5 @@ class TradingStrategy(
   val name: String,
 
   ) : BaseEntity() {
-    
+
 }
