@@ -36,7 +36,22 @@ class UserStrategyStock(
   @JoinColumn(name = "trading_strategy_id")
   val tradingStrategy: TradingStrategy,
 
+  ) : BaseEntity() {
+
   @Enumerated(EnumType.STRING)
-  val tradingActivateType: TradingActivateType = TradingActivateType.INACTIVE,
-) : BaseEntity() {
+  var tradingActivateStatus: TradingActivateStatus = TradingActivateStatus.INACTIVE
+
+  /**
+   * 자동 거래 활성화
+   */
+  fun activate() {
+    tradingActivateStatus = TradingActivateStatus.ACTIVE
+  }
+
+  /**
+   * 자동 거래 비활성화
+   */
+  fun deactivate() {
+    tradingActivateStatus = TradingActivateStatus.INACTIVE
+  }
 }

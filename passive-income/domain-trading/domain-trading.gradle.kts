@@ -8,3 +8,7 @@ dependencies {
   implementation(project(":passive-income:domain-user"))
   implementation(project(":passive-income:domain-stock"))
 }
+
+apply {
+  plugin("java-test-fixtures")
+}

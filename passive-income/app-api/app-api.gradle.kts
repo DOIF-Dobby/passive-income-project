@@ -24,5 +24,6 @@ dependencies {
 
   testImplementation(testFixtures(project(":passive-income:domain-stock")))
   testImplementation(testFixtures(project(":passive-income:domain-user")))
+  testImplementation(testFixtures(project(":passive-income:domain-trading")))
 
 }

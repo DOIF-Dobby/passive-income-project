@@ -41,4 +41,22 @@ class UserStrategyStockService(
     // KIS App이 실시간으로 데이터 받아오면?
     // 해당 데이터를 가지고 거래를 할지 말지 결정하도록 해야함. -> 누가? 이건 좀 고민좀 해야겠다.
   }
+
+  /**
+   * 거래 전략 활성화
+   */
+  @Transactional
+  fun activateTradingStrategy(userStrategyStockId: Long) {
+    val userStrategyStock = UserStrategyStockServiceHelper.findUserStrategyStock(userStrategyStockRepository, userStrategyStockId)
+    userStrategyStock.activate()
+  }
+
+  /**
+   * 거래 전략 비활성화
+   */
+  @Transactional
+  fun deactivateTradingStrategy(userStrategyStockId: Long) {
+    val userStrategyStock = UserStrategyStockServiceHelper.findUserStrategyStock(userStrategyStockRepository, userStrategyStockId)
+    userStrategyStock.deactivate()
+  }
 }
