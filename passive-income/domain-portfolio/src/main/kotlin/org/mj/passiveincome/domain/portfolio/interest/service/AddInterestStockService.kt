@@ -1,11 +1,11 @@
-package org.mj.passiveincome.domain.portfolio.service
+package org.mj.passiveincome.domain.portfolio.interest.service
 
 import org.mj.passiveincome.domain.portfolio.interest.InterestStock
 import org.mj.passiveincome.domain.portfolio.interest.InterestStockRepository
 import org.springframework.stereotype.Service
 
 @Service
-class InterestStockDomainService(
+class AddInterestStockService(
   private val interestStockRepository: InterestStockRepository,
 ) {
 

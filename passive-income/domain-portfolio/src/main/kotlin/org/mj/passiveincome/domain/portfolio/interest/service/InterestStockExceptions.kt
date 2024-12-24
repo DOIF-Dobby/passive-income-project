@@ -1,4 +1,4 @@
-package org.mj.passiveincome.domain.portfolio.service
+package org.mj.passiveincome.domain.portfolio.interest.service
 
 import org.mj.passiveincome.system.core.base.BaseException
 

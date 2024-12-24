@@ -5,7 +5,7 @@ import org.mj.passiveincome.domain.credentials.UserKisCredentialsRepository
 import org.springframework.stereotype.Service
 
 @Service
-class UserKisCredentialsDomainService(
+class RegisterUserKisCredentialsService(
   private val userKisCredentialsRepository: UserKisCredentialsRepository,
 ) {
 

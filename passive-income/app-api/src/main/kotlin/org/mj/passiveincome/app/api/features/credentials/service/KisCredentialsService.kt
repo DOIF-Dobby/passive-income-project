@@ -2,7 +2,7 @@ package org.mj.passiveincome.app.api.features.credentials.service
 
 import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.credentials.UserKisCredentials
-import org.mj.passiveincome.domain.credentials.service.UserKisCredentialsDomainService
+import org.mj.passiveincome.domain.credentials.service.RegisterUserKisCredentialsService
 import org.mj.passiveincome.domain.user.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class KisCredentialsService(
   private val userRepository: UserRepository,
-  private val userKisCredentialsDomainService: UserKisCredentialsDomainService,
+  private val registerUserKisCredentialsService: RegisterUserKisCredentialsService,
 ) {
 
   /**
@@ -26,6 +26,6 @@ class KisCredentialsService(
       appSecretKey = payload.appSecretKey,
     )
 
-    userKisCredentialsDomainService.registerKisCredentials(userKisCredentials)
+    registerUserKisCredentialsService.registerKisCredentials(userKisCredentials)
   }
 }

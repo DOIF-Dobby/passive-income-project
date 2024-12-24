@@ -1,12 +1,15 @@
 package org.mj.passiveincome.app.api.features.trading.service
 
 import org.mj.passiveincome.domain.trading.TradingStrategy
+import org.mj.passiveincome.domain.trading.TradingStrategyVisibility
 
 /**
  * 거래 전략 생성
  */
 data class CreateTradingStrategy(
   val strategyName: String,
+  val strategyDescription: String,
+  val strategyVisibility: TradingStrategyVisibility,
 )
 
 /**
@@ -26,11 +29,3 @@ data class TradingStrategyResponse(
   }
 }
 
-/**
- * 사용자 거래 전략 및 주식 맵핑 등록
- */
-data class RegisterUserStrategyStock(
-  val userId: Long,
-  val stockId: Long,
-  val tradingStrategyId: Long,
-)

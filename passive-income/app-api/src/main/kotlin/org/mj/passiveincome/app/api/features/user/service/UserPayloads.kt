@@ -22,7 +22,7 @@ data class UserResponse(
     fun of(user: User) = user.run {
       UserResponse(
         id = id,
-        username = username,
+        username = name,
       )
     }
   }

@@ -7,8 +7,8 @@ import io.kotest.matchers.shouldBe
 import org.mj.passiveincome.app.api.features.user.service.UserNotFoundException
 import org.mj.passiveincome.domain.credentials.UserKisCredentials
 import org.mj.passiveincome.domain.credentials.UserKisCredentialsRepository
+import org.mj.passiveincome.domain.credentials.service.RegisterUserKisCredentialsService
 import org.mj.passiveincome.domain.credentials.service.UserKisCredentialsAlreadyRegisteredException
-import org.mj.passiveincome.domain.credentials.service.UserKisCredentialsDomainService
 import org.mj.passiveincome.domain.user.UserFixtures
 import org.mj.passiveincome.domain.user.UserRepository
 
@@ -20,7 +20,7 @@ class KisCredentialsServiceTest(
 
   val kisCredentialsService = KisCredentialsService(
     userRepository = userRepository,
-    userKisCredentialsDomainService = UserKisCredentialsDomainService(userKisCredentialsRepository)
+    registerUserKisCredentialsService = RegisterUserKisCredentialsService(userKisCredentialsRepository)
   )
 
   describe("registerKisCredentials") {

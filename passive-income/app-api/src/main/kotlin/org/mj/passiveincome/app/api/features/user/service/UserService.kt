@@ -26,7 +26,7 @@ class UserService(
   @Transactional
   fun signUp(payload: CreateUser) {
     val user = User(
-      username = payload.username,
+      name = payload.username,
     )
 
     userRepository.save(user)

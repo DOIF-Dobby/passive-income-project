@@ -5,7 +5,7 @@ import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.portfolio.interest.InterestGroupRepository
 import org.mj.passiveincome.domain.portfolio.interest.InterestStock
 import org.mj.passiveincome.domain.portfolio.interest.InterestStockRepository
-import org.mj.passiveincome.domain.portfolio.service.InterestStockDomainService
+import org.mj.passiveincome.domain.portfolio.interest.service.AddInterestStockService
 import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.domain.user.UserRepository
 import org.springframework.stereotype.Service
@@ -17,7 +17,7 @@ class InterestStockService(
   private val interestGroupRepository: InterestGroupRepository,
   private val stockRepository: StockRepository,
   private val userRepository: UserRepository,
-  private val interestStockDomainService: InterestStockDomainService,
+  private val addInterestStockService: AddInterestStockService,
 ) {
 
   /**
@@ -31,7 +31,7 @@ class InterestStockService(
       user = UserServiceHelper.findUser(userRepository, payload.userId),
     )
 
-    interestStockDomainService.addInterestStock(interestStock)
+    addInterestStockService.addInterestStock(interestStock)
   }
 
   /**

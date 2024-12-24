@@ -16,14 +16,14 @@ class UserServiceTest(
   val userService = UserService(userRepository)
 
   describe("findUser") {
-    val user = userRepository.save(User(username = "Test User1"))
+    val user = userRepository.save(User(name = "Test User1"))
 
     context("사용자 ID에 해당하는 사용자가 존재하면") {
       it("사용자 정보를 반환한다.") {
         val result = userService.findUser(user.id)
 
         result.id shouldBe user.id
-        result.username shouldBe user.username
+        result.username shouldBe user.name
       }
     }
 
@@ -46,7 +46,7 @@ class UserServiceTest(
       results.size shouldBe 1
 
       val result = results[0]
-      result.username shouldBe "Test User1"
+      result.name shouldBe "Test User1"
       result.status shouldBe UserStatus.ACTIVE
     }
   }

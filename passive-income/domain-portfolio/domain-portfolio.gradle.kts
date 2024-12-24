@@ -8,4 +8,5 @@ dependencies {
   implementation(project(":passive-income:domain-common"))
   implementation(project(":passive-income:domain-user"))
   implementation(project(":passive-income:domain-stock"))
+  implementation(project(":passive-income:domain-trading"))
 }

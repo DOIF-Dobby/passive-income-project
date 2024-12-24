@@ -10,8 +10,8 @@ import org.mj.passiveincome.domain.portfolio.interest.InterestGroup
 import org.mj.passiveincome.domain.portfolio.interest.InterestGroupRepository
 import org.mj.passiveincome.domain.portfolio.interest.InterestStock
 import org.mj.passiveincome.domain.portfolio.interest.InterestStockRepository
-import org.mj.passiveincome.domain.portfolio.service.DuplicateStockInGroupException
-import org.mj.passiveincome.domain.portfolio.service.InterestStockDomainService
+import org.mj.passiveincome.domain.portfolio.interest.service.AddInterestStockService
+import org.mj.passiveincome.domain.portfolio.interest.service.DuplicateStockInGroupException
 import org.mj.passiveincome.domain.stock.StockFixtures
 import org.mj.passiveincome.domain.stock.StockRepository
 import org.mj.passiveincome.domain.user.UserFixtures
@@ -30,7 +30,7 @@ class InterestStockServiceTest(
     interestGroupRepository,
     stockRepository,
     userRepository,
-    InterestStockDomainService(interestStockRepository),
+    AddInterestStockService(interestStockRepository),
   )
 
   describe("addInterestStock") {

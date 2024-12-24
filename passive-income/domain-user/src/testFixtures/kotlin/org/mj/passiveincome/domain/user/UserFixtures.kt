@@ -5,13 +5,13 @@ class UserFixtures {
   companion object {
     fun user1(): User {
       return User(
-        username = "Test User1",
+        name = "Test User1",
       )
     }
 
     fun user2(): User {
       return User(
-        username = "Test User2",
+        name = "Test User2",
       )
     }
   }
