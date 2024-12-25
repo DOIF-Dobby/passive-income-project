@@ -57,6 +57,14 @@ subprojects {
     imports {
       mavenBom("org.springframework.boot:spring-boot-dependencies:3.4.0")
     }
+
+    dependencies {
+      dependencySet("io.jsonwebtoken:0.12.6") {
+        entry("jjwt-api")
+        entry("jjwt-impl")
+        entry("jjwt-jackson")
+      }
+    }
   }
 
   dependencies {

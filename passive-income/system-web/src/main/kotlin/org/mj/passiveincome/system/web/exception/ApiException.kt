@@ -27,3 +27,9 @@ abstract class NotFoundApiException(
   messageProperty = messageProperty,
   messageArguments = messageArguments,
 )
+
+class UnauthorizedApiException : ApiException(
+  httpStatus = HttpStatus.UNAUTHORIZED,
+  message = "Unauthorized",
+  messageProperty = "web.error.unauthorized",
+)
