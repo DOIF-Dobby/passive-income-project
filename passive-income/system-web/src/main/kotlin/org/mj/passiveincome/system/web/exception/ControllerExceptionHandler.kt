@@ -7,11 +7,13 @@ import org.mj.passiveincome.system.core.base.BaseResponseDetail
 import org.mj.passiveincome.system.core.base.messageAccessor
 import org.mj.passiveincome.system.core.logging.error
 import org.mj.passiveincome.system.core.logging.log
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.validation.BindException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.servlet.resource.NoResourceFoundException
 
 @RestControllerAdvice
 class ControllerExceptionHandler {
@@ -120,6 +122,18 @@ class ControllerExceptionHandler {
         BaseResponseDetail.fail(
           data = invalidFieldMap,
           message = messageAccessor.getMessage("web.error.invalid-request-data")
+        )
+      )
+  }
+
+  @ExceptionHandler(NoResourceFoundException::class)
+  fun handleNoResourceFoundException(e: NoResourceFoundException): ResponseEntity<BaseResponse> {
+    log.error { "${e::class.simpleName}: ${e.message}" }
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+      .body(
+        BaseResponse.fail(
+          message = messageAccessor.getMessage("web.error.not-found")
         )
       )
   }

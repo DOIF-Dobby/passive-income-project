@@ -13,9 +13,18 @@ class TradingStrategyAccessChecker(
 ) {
 
   /**
+   * 전략에 대한 접근 가능 여부를 확인하고 접근 불가능하면 예외를 발생시킨다.
+   */
+  fun checkAccess(targetUser: User, tradingStrategy: TradingStrategy) {
+    if (!canAccess(targetUser, tradingStrategy)) {
+      throw CannotAccessTradingStrategyException()
+    }
+  }
+
+  /**
    * 전략에 대한 접근 가능 여부를 확인한다.
    */
-  fun canAccess(tradingStrategy: TradingStrategy, targetUser: User): Boolean {
+  fun canAccess(targetUser: User, tradingStrategy: TradingStrategy): Boolean {
     // 전략이 공개 상태이면 누구나 접근 가능하다.
     if (tradingStrategy.visibility == TradingStrategyVisibility.PUBLIC) {
       return true

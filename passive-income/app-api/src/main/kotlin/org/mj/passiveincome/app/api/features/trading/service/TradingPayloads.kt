@@ -8,7 +8,7 @@ import org.mj.passiveincome.domain.trading.TradingStrategyVisibility
  */
 data class CreateTradingStrategy(
   val strategyName: String,
-  val strategyDescription: String,
+  val strategyDescription: String? = null,
   val strategyVisibility: TradingStrategyVisibility,
 )
 
