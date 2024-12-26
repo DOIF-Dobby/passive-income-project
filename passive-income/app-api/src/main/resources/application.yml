@@ -23,3 +23,6 @@ logging:
   level:
     root: info
 
+app:
+  security:
+    filter-chain: permit-all

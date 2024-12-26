@@ -5,12 +5,14 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.Table
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 /**
  * 그룹 Entity
  */
 @Entity
+@Table(name = "groups")
 class Group(
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
