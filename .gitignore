@@ -43,4 +43,4 @@ out/
 .DS_Store
 
 ### Secret ###
-**/src/main/resources/application-oauth.yml
+**/src/main/resources/.env

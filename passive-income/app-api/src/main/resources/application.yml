@@ -2,7 +2,7 @@ spring:
   application:
     name: passive-income-app-service
   profiles:
-    active: local
+    active: local, oauth
 
   jpa:
     hibernate:
