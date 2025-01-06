@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import org.mj.passiveincome.domain.common.email.Email
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 /**
@@ -22,10 +23,16 @@ class User(
   val id: Long = 0L,
 
   val name: String,
+  val email: Email,
+
+  val oauthProviderId: String,
+
+  @Enumerated(EnumType.STRING)
+  val oauthProviderType: OAuthProviderType,
 
   @Enumerated(EnumType.STRING)
   val status: UserStatus = UserStatus.ACTIVE,
-
+  
   ) : BaseEntity() {
 
 }

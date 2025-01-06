@@ -25,4 +25,4 @@ logging:
 
 app:
   security:
-    filter-chain: permit-all
+    filter-chain: oauth

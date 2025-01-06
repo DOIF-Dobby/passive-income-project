@@ -18,17 +18,5 @@ class UserService(
     val user = UserServiceHelper.findUser(userRepository, userId)
     return UserResponse.of(user)
   }
-
-
-  /**
-   * 사용자 등록
-   */
-  @Transactional
-  fun signUp(payload: CreateUser) {
-    val user = User(
-      name = payload.username,
-    )
-
-    userRepository.save(user)
-  }
+  
 }
