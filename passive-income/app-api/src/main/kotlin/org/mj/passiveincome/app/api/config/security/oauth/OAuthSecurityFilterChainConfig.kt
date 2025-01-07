@@ -44,6 +44,8 @@ class OAuthSecurityFilterChainConfig(
   }
 
   companion object {
-    private val permitAllRequest: Array<String> = arrayOf()
+    private val permitAllRequest: Array<String> = arrayOf(
+      "/oauth2/test"
+    )
   }
 }

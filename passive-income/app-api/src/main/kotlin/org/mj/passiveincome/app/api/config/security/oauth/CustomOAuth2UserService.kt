@@ -17,6 +17,11 @@ class CustomOAuth2UserService(
   override fun loadUser(userRequest: OAuth2UserRequest?): OAuth2User {
     val oauthUser = super.loadUser(userRequest)
     val user = getOrSaveUser(userRequest!!, oauthUser)
+
+    println(userRequest)
+    println(userRequest.accessToken)
+    println(oauthUser)
+
     return BasicOAuth2User(user, oauthUser)
   }
 

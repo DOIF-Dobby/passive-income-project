@@ -21,7 +21,7 @@ class ControllerExceptionHandler {
   /**
    * Exception 처리
    */
-  @ExceptionHandler(Exception::class)
+//  @ExceptionHandler(Exception::class)
   fun handleException(e: Exception): ResponseEntity<BaseResponse> {
     log.error { "${e::class.simpleName}: ${e.message}" }
 
