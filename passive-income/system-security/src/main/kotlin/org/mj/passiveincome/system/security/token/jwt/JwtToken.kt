@@ -8,7 +8,7 @@ class JwtToken(
   private val token: String,
   private val expiration: Date
 ) : Token {
-  override fun get(): String {
+  override fun value(): String {
     return token
   }
 

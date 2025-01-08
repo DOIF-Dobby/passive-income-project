@@ -10,9 +10,9 @@ interface UserRepository : JpaRepository<User, Long> {
     """
     SELECT u
     FROM User u
-    WHERE u.oauthProviderId = :oauthProviderId
-    AND u.oauthProviderType = :oauthProviderType
+    WHERE u.oauth2Subject = :oauth2Subject
+    AND u.oauth2ProviderType = :oauth2ProviderType
     """
   )
-  fun findByOAuth(oauthProviderId: String, oauthProviderType: OAuthProviderType): User?
+  fun findByOAuth(oauth2Subject: String, oauth2ProviderType: OAuth2ProviderType): User?
 }

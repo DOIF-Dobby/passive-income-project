@@ -1,23 +1,22 @@
-package org.mj.passiveincome.app.api.config.security.oauth
+package org.mj.passiveincome.app.api.config.security
 
-import org.mj.passiveincome.app.api.config.security.SimpleAuthenticationEntryPoint
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import org.springframework.security.web.util.matcher.RequestMatcher
 
 @Configuration
 @ConditionalOnProperty(
   prefix = "app.security",
   name = ["filter-chain"],
-  havingValue = "oauth",
+  havingValue = "oauth2",
 )
-class OAuthSecurityFilterChainConfig(
-  private val customOAuth2UserService: CustomOAuth2UserService,
+class OAuth2SecurityFilterChainConfig(
   private val simpleAuthenticationEntryPoint: SimpleAuthenticationEntryPoint,
-  private val oAuth2AuthenticationSuccessHandler: OAuth2AuthenticationSuccessHandler,
 ) {
 
   @Bean
@@ -34,18 +33,12 @@ class OAuthSecurityFilterChainConfig(
       .exceptionHandling {
         it.authenticationEntryPoint(simpleAuthenticationEntryPoint)
       }
-      .oauth2Login {
-        it.userInfoEndpoint { customizer ->
-          customizer.userService(customOAuth2UserService)
-        }
-        it.successHandler(oAuth2AuthenticationSuccessHandler)
-      }
       .build()
   }
 
   companion object {
-    private val permitAllRequest: Array<String> = arrayOf(
-      "/oauth2/test"
+    private val permitAllRequest: Array<RequestMatcher> = arrayOf(
+      AntPathRequestMatcher("/oauth2/authenticate", "POST"),
     )
   }
 }

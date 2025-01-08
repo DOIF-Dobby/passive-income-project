@@ -8,8 +8,8 @@ class UserFixtures {
     fun user1(): User {
       return User(
         name = "Test User1",
-        oauthProviderType = OAuthProviderType.GOOGLE,
-        oauthProviderId = "google-oauth-id1",
+        oauth2ProviderType = OAuth2ProviderType.GOOGLE,
+        oauth2Subject = "google-oauth-id1",
         email = Email("doif.dobby@gmail.com")
       )
     }
@@ -17,8 +17,8 @@ class UserFixtures {
     fun user2(): User {
       return User(
         name = "Test User2",
-        oauthProviderType = OAuthProviderType.GOOGLE,
-        oauthProviderId = "google-oauth-id2",
+        oauth2ProviderType = OAuth2ProviderType.GOOGLE,
+        oauth2Subject = "google-oauth-id2",
         email = Email("kjpmj27@gmail.com")
       )
     }

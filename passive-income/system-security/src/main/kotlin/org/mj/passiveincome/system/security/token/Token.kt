@@ -4,7 +4,7 @@ import java.util.Date
 
 interface Token {
 
-  fun get(): String
+  fun value(): String
 
   fun getExpiration(): Date
 

@@ -25,14 +25,14 @@ class User(
   val name: String,
   val email: Email,
 
-  val oauthProviderId: String,
+  val oauth2Subject: String,
 
   @Enumerated(EnumType.STRING)
-  val oauthProviderType: OAuthProviderType,
+  val oauth2ProviderType: OAuth2ProviderType,
 
   @Enumerated(EnumType.STRING)
   val status: UserStatus = UserStatus.ACTIVE,
-  
+
   ) : BaseEntity() {
 
 }

@@ -44,7 +44,7 @@ class JwtTokenServiceTest : DescribeSpec({
       val token = tokenService.generateToken(context)
 
       it("true를 반환한다.") {
-        tokenService.validateToken(token.get()) shouldBe true
+        tokenService.validateToken(token.value()) shouldBe true
       }
     }
 
@@ -57,7 +57,7 @@ class JwtTokenServiceTest : DescribeSpec({
 
         val token = tokenService.generateToken(context)
 
-        tokenService.validateToken(token.get()) shouldBe false
+        tokenService.validateToken(token.value()) shouldBe false
       }
     }
 
@@ -70,7 +70,7 @@ class JwtTokenServiceTest : DescribeSpec({
 
         val token = tokenService.generateToken(context)
 
-        tokenService.validateToken("${token.get()}invalid") shouldBe false
+        tokenService.validateToken("${token.value()}invalid") shouldBe false
       }
     }
   }
@@ -86,7 +86,7 @@ class JwtTokenServiceTest : DescribeSpec({
       val token = tokenService.generateToken(context)
 
       it("해당 값을 반환한다.") {
-        tokenService.getPayloadValue(token.get(), "email") shouldBe "ddong@gmail.com"
+        tokenService.getPayloadValue(token.value(), "email") shouldBe "ddong@gmail.com"
       }
     }
 
@@ -99,7 +99,7 @@ class JwtTokenServiceTest : DescribeSpec({
       val token = tokenService.generateToken(context)
 
       it("null을 반환한다.") {
-        tokenService.getPayloadValue(token.get(), "email") shouldBe null
+        tokenService.getPayloadValue(token.value(), "email") shouldBe null
       }
     }
   }
@@ -116,7 +116,7 @@ class JwtTokenServiceTest : DescribeSpec({
       return Jwts.parser()
         .verifyWith(secretKey)
         .build()
-        .parseSignedClaims(token.get())
+        .parseSignedClaims(token.value())
     }
   }
 }

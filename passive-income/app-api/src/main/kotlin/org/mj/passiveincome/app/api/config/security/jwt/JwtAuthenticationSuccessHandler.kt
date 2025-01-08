@@ -1,4 +1,4 @@
-package org.mj.passiveincome.app.api.config.security
+package org.mj.passiveincome.app.api.config.security.jwt
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest
