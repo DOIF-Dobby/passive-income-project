@@ -11,8 +11,8 @@ import org.springframework.security.web.util.matcher.RequestMatcher
 import org.springframework.web.filter.OncePerRequestFilter
 import java.nio.charset.StandardCharsets
 
-class OAuth2RedirectUrlFilter(
-  private val oAuth2RedirectUrlResolver: OAuth2RedirectUrlResolver,
+class OAuth2RedirectUriFilter(
+  private val oAuth2RedirectUriResolver: OAuth2RedirectUriResolver,
   private val objectMapper: ObjectMapper,
 ) : OncePerRequestFilter() {
   var requestMatcher: RequestMatcher = DEFAULT_ANT_PATH_REQUEST_MATCHER
@@ -24,7 +24,7 @@ class OAuth2RedirectUrlFilter(
       return
     }
     val providerType = request.getParameter(providerParameter)
-    val redirectUri = oAuth2RedirectUrlResolver.resolveRedirectUri(providerType)
+    val redirectUri = oAuth2RedirectUriResolver.resolveRedirectUri(providerType)
 
     val redirectUriResponse = BaseResponseDetail.ok(
       detail = mapOf(

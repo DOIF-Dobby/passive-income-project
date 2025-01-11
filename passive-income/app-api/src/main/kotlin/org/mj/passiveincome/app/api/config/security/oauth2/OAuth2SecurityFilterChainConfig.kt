@@ -8,9 +8,9 @@ import org.mj.passiveincome.app.api.config.security.token.TokenAuthenticationSer
 import org.mj.passiveincome.system.security.oauth2.authentication.OAuth2AuthenticationFilter
 import org.mj.passiveincome.system.security.oauth2.authentication.OAuth2AuthenticationProvider
 import org.mj.passiveincome.system.security.oauth2.authentication.google.GoogleOAuth2AuthenticationService
-import org.mj.passiveincome.system.security.oauth2.redirect.OAuth2RedirectUrlFilter
-import org.mj.passiveincome.system.security.oauth2.redirect.OAuth2RedirectUrlResolver
-import org.mj.passiveincome.system.security.oauth2.redirect.google.GoogleOAuth2RedirectUrlService
+import org.mj.passiveincome.system.security.oauth2.redirect.OAuth2RedirectUriFilter
+import org.mj.passiveincome.system.security.oauth2.redirect.OAuth2RedirectUriResolver
+import org.mj.passiveincome.system.security.oauth2.redirect.google.GoogleOAuth2RedirectUriService
 import org.mj.passiveincome.system.security.oauth2.user.OAuth2UserService
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
@@ -107,10 +107,10 @@ class OAuth2SecurityFilterChainConfig(
   /**
    * OAuth2 Redirect Uri를 만들어서 반환하는 필터
    */
-  fun oAuth2RedirectUriFilter(): OAuth2RedirectUrlFilter {
-    val oAuth2RedirectUrlResolver = OAuth2RedirectUrlResolver(
+  fun oAuth2RedirectUriFilter(): OAuth2RedirectUriFilter {
+    val oAuth2RedirectUriResolver = OAuth2RedirectUriResolver(
       listOf(
-        GoogleOAuth2RedirectUrlService(
+        GoogleOAuth2RedirectUriService(
           clientId = googleOAuth2Properties.clientId,
           redirectUri = googleOAuth2Properties.redirectUri,
           scope = googleOAuth2Properties.scope
@@ -118,8 +118,8 @@ class OAuth2SecurityFilterChainConfig(
       )
     )
 
-    return OAuth2RedirectUrlFilter(
-      oAuth2RedirectUrlResolver = oAuth2RedirectUrlResolver,
+    return OAuth2RedirectUriFilter(
+      oAuth2RedirectUriResolver = oAuth2RedirectUriResolver,
       objectMapper = objectMapper
     )
   }

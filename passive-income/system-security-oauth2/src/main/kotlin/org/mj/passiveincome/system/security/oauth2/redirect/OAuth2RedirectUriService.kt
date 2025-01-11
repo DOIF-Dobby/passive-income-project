@@ -3,7 +3,7 @@ package org.mj.passiveincome.system.security.oauth2.redirect
 import org.mj.passiveincome.type.common.OAuth2ProviderType
 import java.net.URLEncoder
 
-interface OAuth2RedirectUrlService {
+interface OAuth2RedirectUriService {
 
   fun resolveRedirectUri(): String
 
