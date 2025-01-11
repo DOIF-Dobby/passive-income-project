@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import org.mj.passiveincome.system.security.token.Token
 import org.mj.passiveincome.system.security.token.jwt.HmacKeyProvider
@@ -24,13 +23,9 @@ class JwtTokenServiceTest : DescribeSpec({
       val token = tokenService.generateToken(context)
 
       val parsedToken = getParsedToken(token)
-      val expectedExpiration = token.getExpiration().toInstant()
-      val actualExpiration = parsedToken.payload.expiration.toInstant()
 
       parsedToken.payload.subject shouldBe "test 홍홍홍"
       parsedToken.payload["email"] shouldBe "ddong@gmail.com"
-      Duration.between(expectedExpiration, actualExpiration).abs().seconds shouldBeLessThan 1
-
     }
   }
 

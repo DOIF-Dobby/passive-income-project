@@ -1,6 +1,7 @@
 package org.mj.passiveincome.app.api.features.trading.service
 
-import org.mj.passiveincome.app.api.features.user.service.UserNotFoundException
+import org.mj.passiveincome.app.api.config.security.AuthenticationUtil
+import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.trading.TradingStrategy
 import org.mj.passiveincome.domain.trading.TradingStrategyRepository
 import org.mj.passiveincome.domain.user.UserRepository
@@ -36,8 +37,8 @@ class TradingStrategyService(
    */
   @Transactional
   fun createTradingStrategy(payload: CreateTradingStrategy) {
-    // TODO: spring security 적용 후 owner 정보 추가해야 함
-    val user = userRepository.findTopByName("mock") ?: throw UserNotFoundException()
+    val userId = AuthenticationUtil.getAuthUserId()
+    val user = UserServiceHelper.findUser(userRepository, userId)
 
     val tradingStrategy = TradingStrategy(
       name = payload.strategyName,

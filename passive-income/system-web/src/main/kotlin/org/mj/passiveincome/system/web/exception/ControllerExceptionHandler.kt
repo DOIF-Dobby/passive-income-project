@@ -21,7 +21,7 @@ class ControllerExceptionHandler {
   /**
    * Exception 처리
    */
-//  @ExceptionHandler(Exception::class)
+  @ExceptionHandler(Exception::class)
   fun handleException(e: Exception): ResponseEntity<BaseResponse> {
     log.error { "${e::class.simpleName}: ${e.message}" }
 
@@ -79,7 +79,7 @@ class ControllerExceptionHandler {
     return ResponseEntity.badRequest()
       .body(
         BaseResponseDetail.fail(
-          data = invalidFieldMap,
+          detail = invalidFieldMap,
           message = messageAccessor.getMessage("web.error.invalid-request-data")
         )
       )
@@ -120,7 +120,7 @@ class ControllerExceptionHandler {
     return ResponseEntity.badRequest()
       .body(
         BaseResponseDetail.fail(
-          data = invalidFieldMap,
+          detail = invalidFieldMap,
           message = messageAccessor.getMessage("web.error.invalid-request-data")
         )
       )

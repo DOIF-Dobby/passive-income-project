@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain
 @ConditionalOnProperty(
   prefix = "app.security",
   name = ["filter-chain"],
-  havingValue = "permit-all",
+  havingValue = "permit_all",
 )
 class PermitAllSecurityFilterChainConfig {
 

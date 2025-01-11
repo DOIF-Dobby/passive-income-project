@@ -9,6 +9,6 @@ fun <T> BaseResponseDetail.Companion.content(data: List<T>, message: String = Ba
   return this.of(
     status = BaseStatus.OK,
     message = message,
-    data = Content.of(data)
+    detail = Content.of(data)
   )
 }

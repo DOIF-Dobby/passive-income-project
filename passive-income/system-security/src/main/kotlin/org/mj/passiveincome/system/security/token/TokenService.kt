@@ -6,6 +6,8 @@ interface TokenService {
 
   fun validateToken(token: String): Boolean
 
+  fun getPayloadValues(token: String): Map<String, Any>
+
   fun getPayloadValue(token: String, payloadKey: String): Any?
 
 }

@@ -14,6 +14,7 @@ dependencies {
   implementation(project(":passive-income:system-data-jpa"))
   implementation(project(":passive-income:system-data-redis"))
   implementation(project(":passive-income:system-security"))
+  implementation(project(":passive-income:system-security-oauth2"))
   implementation(project(":passive-income:system-web"))
 
   implementation(project(":passive-income:domain-common"))
@@ -23,6 +24,8 @@ dependencies {
   implementation(project(":passive-income:domain-portfolio"))
   implementation(project(":passive-income:domain-stock"))
   implementation(project(":passive-income:domain-trading"))
+
+  implementation(project(":passive-income:type-common"))
 
   testImplementation(testFixtures(project(":passive-income:domain-stock")))
   testImplementation(testFixtures(project(":passive-income:domain-user")))

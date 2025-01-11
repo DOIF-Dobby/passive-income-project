@@ -2,7 +2,7 @@ spring:
   application:
     name: passive-income-app-service
   profiles:
-    active: local
+    active: local, oauth2
 
   jpa:
     hibernate:
@@ -26,9 +26,17 @@ logging:
 app:
   security:
     filter-chain: oauth2
+    jwt:
+      access-token:
+        secret: ${JWT_ACCESS_TOKEN_SECRET}
+        expiration: PT24H
     oauth2:
       provider:
         google:
           client-id: ${GOOGLE_CLIENT_ID}
           client-secret: ${GOOGLE_CLIENT_SECRET}
+          redirect-uri: http://localhost:3000/oauth2/code/google
+          scope:
+            - email
+            - profile
 

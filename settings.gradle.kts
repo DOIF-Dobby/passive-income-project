@@ -17,7 +17,9 @@ include("passive-income:system-data")
 include("passive-income:system-data-jpa")
 include("passive-income:system-data-redis")
 include("passive-income:system-security")
+include("passive-income:system-security-oauth2")
 include("passive-income:system-web")
+include("passive-income:type-common")
 
 rootProject.name = "passive-income-project"
 

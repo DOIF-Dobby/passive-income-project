@@ -1,6 +1,7 @@
 package org.mj.passiveincome.domain.user
 
 import org.mj.passiveincome.domain.common.email.Email
+import org.mj.passiveincome.type.common.OAuth2ProviderType
 
 class UserFixtures {
 

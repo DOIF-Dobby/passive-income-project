@@ -33,7 +33,6 @@ class JwtTokenService(
 
     return JwtToken(
       token = jwt,
-      expiration = expiration
     )
   }
 
@@ -48,6 +47,18 @@ class JwtTokenService(
       expiration.after(Date())
     } catch (e: Exception) {
       false
+    }
+  }
+
+  /**
+   * token의 모든 payload를 반환한다.
+   */
+  override fun getPayloadValues(token: String): Map<String, Any> {
+    return try {
+      val parsedToken = getParsedToken(token)
+      parsedToken.payload
+    } catch (e: Exception) {
+      emptyMap()
     }
   }
 

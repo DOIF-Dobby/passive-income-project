@@ -6,6 +6,8 @@ dependencies {
   implementation(project(":passive-income:system-data-jpa"))
 
   implementation(project(":passive-income:domain-common"))
+
+  implementation(project(":passive-income:type-common"))
 }
 
 apply {

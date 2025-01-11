@@ -4,30 +4,30 @@ package org.mj.passiveincome.system.core.base
 class BaseResponseDetail<T>(
   code: String,
   message: String,
-  val data: T
+  val detail: T
 ) : BaseResponse(code, message) {
   companion object {
-    fun <T> of(status: BaseStatus, data: T, message: String): BaseResponseDetail<T> {
+    fun <T> of(status: BaseStatus, detail: T, message: String): BaseResponseDetail<T> {
       return BaseResponseDetail(
         code = status.code,
         message = message,
-        data = data
+        detail = detail
       )
     }
 
-    fun <T> ok(data: T, message: String = getBundleMessage(code = "base.ok", defaultMessage = BaseStatus.OK.message)): BaseResponseDetail<T> {
+    fun <T> ok(detail: T, message: String = getBundleMessage(code = "base.ok", defaultMessage = BaseStatus.OK.message)): BaseResponseDetail<T> {
       return of(
         status = BaseStatus.OK,
         message = message,
-        data = data
+        detail = detail
       )
     }
 
-    fun <T> fail(data: T, message: String = getBundleMessage(code = "base.fail", defaultMessage = BaseStatus.FAIL.message)): BaseResponseDetail<T> {
+    fun <T> fail(detail: T, message: String = getBundleMessage(code = "base.fail", defaultMessage = BaseStatus.FAIL.message)): BaseResponseDetail<T> {
       return of(
         status = BaseStatus.FAIL,
         message = message,
-        data = data
+        detail = detail
       )
     }
   }

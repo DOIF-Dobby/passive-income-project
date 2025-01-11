@@ -8,6 +8,9 @@ import javax.crypto.SecretKey
 class HmacKeyProvider(
   private val plainTextKey: String
 ) : TokenKeyProvider {
+  init {
+    require(plainTextKey.isNotBlank()) { "plainTextKey must not be blank" }
+  }
 
   override fun getKey(): SecretKey {
     return Keys.hmacShaKeyFor(Decoders.BASE64.decode(plainTextKey))

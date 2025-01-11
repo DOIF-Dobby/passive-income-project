@@ -10,6 +10,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.mj.passiveincome.domain.common.email.Email
 import org.mj.passiveincome.system.data.jpa.BaseEntity
+import org.mj.passiveincome.type.common.OAuth2ProviderType
 
 /**
  * 사용자 Entity

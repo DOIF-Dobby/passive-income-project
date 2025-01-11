@@ -8,12 +8,13 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class TokenConfig {
+class TokenConfig(
+  private val jwtAccessTokenProperties: JwtAccessTokenProperties
+) {
 
   @Bean
   fun tokenKeyProvider(): TokenKeyProvider {
-    // TODO: 키를 어디에 저장해야할까요?
-    return HmacKeyProvider("123456789012345678901234567890123456789012345678901234567890")
+    return HmacKeyProvider(jwtAccessTokenProperties.secret)
   }
 
   @Bean

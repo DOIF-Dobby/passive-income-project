@@ -8,10 +8,10 @@ import org.mj.passiveincome.system.web.response.UnauthorizedResponse
 import org.springframework.http.MediaType
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.AuthenticationEntryPoint
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 
-@Service
+@Component
 class SimpleAuthenticationEntryPoint(
   private val objectMapper: ApiObjectMapper,
 ) : AuthenticationEntryPoint {
