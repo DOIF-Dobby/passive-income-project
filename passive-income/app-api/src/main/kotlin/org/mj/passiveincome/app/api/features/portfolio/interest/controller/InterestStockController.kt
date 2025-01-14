@@ -32,9 +32,8 @@ class InterestStockController(
    * 사용자 / 그룹 별 관심 주식 목록 조회
    */
   @GetMapping("/interest-stocks")
-  fun findInterestStocks(@RequestParam userId: Long, @RequestParam groupId: Long): BaseResponseContent<InterestStockResponse> {
+  fun findInterestStocks(@RequestParam groupId: Long): BaseResponseContent<InterestStockResponse> {
     val interestStocks = interestStockService.findInterestStocks(
-      userId = userId,
       groupId = groupId,
     )
     return BaseResponseDetail.content(interestStocks)

@@ -20,7 +20,7 @@ class InterestGroupService(
   fun createInterestGroup(payload: CreateInterestGroup) {
     val interestGroup = InterestGroup(
       name = payload.name,
-      user = UserServiceHelper.findUser(userRepository, payload.userId),
+      user = UserServiceHelper.findCurrentUser(userRepository),
     )
 
     interestGroupRepository.save(interestGroup)

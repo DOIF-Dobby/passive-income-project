@@ -1,5 +1,6 @@
 package org.mj.passiveincome.app.api.features.portfolio.interest.service
 
+import org.mj.passiveincome.app.api.config.security.AuthenticationUtil
 import org.mj.passiveincome.app.api.features.stock.service.StockServiceHelper
 import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.portfolio.interest.RecentlyViewedStock
@@ -22,7 +23,7 @@ class RecentlyViewedStockService(
   @Transactional
   fun addRecentlyViewedStock(payload: AddRecentlyViewedStock) {
     val recentlyViewedStock = RecentlyViewedStock(
-      user = UserServiceHelper.findUser(userRepository, payload.userId),
+      user = UserServiceHelper.findCurrentUser(userRepository),
       stock = StockServiceHelper.findStock(stockRepository, payload.stockId),
     )
 
@@ -33,7 +34,8 @@ class RecentlyViewedStockService(
    * 사용자 최근 본 주식 목록 조회
    */
   @Transactional(readOnly = true)
-  fun findRecentlyViewedStocks(userId: Long): List<RecentlyViewedStockResponse> {
+  fun findRecentlyViewedStocks(): List<RecentlyViewedStockResponse> {
+    val userId = AuthenticationUtil.getAuthUserId()
     return recentlyViewedStockRepository.findRecentlyViewedStocks(userId)
       .map { RecentlyViewedStockResponse.of(it) }
   }

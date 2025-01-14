@@ -30,24 +30,28 @@ class TradingStrategyAccessChecker(
       return true
     }
 
-    val accessSubjects = tradingStrategy.accessSubjects
-
-    // 전략에 접근 가능한 주체가 없으면 소유자만 접근 가능하다.
-    if (accessSubjects.isEmpty()) {
-      return tradingStrategy.owner == targetUser
+    // 거래 전략의 소유자는 접근 가능하다.
+    if (tradingStrategy.owner == targetUser) {
+      return true
     }
 
-    // visibility가 GROUP인 경우
-    if (tradingStrategy.visibility == TradingStrategyVisibility.GROUP) {
-      // 사용자가 전략에 접근할 수 있는 그룹에 속해있으면 접근 가능하다.
-      val groupUsers = groupUserRepository.findAllByUser(targetUser)
-      val matchedGroupUser = groupUsers.find { groupUser ->
-        accessSubjects.any { it.subjectId == groupUser.group.id && it.accessType == TradingStrategyAccessType.GROUP }
-      }
+    val accessSubjects = tradingStrategy.accessSubjects
 
-      if (matchedGroupUser != null) {
-        return true
+    // 전략에 접근 가능한 주체가 없으면 접근 불가능하다.
+    if (accessSubjects.isEmpty()) {
+      return false
+    }
+
+    // 사용자가 전략에 접근할 수 있는 그룹에 속해있으면 접근 가능하다.
+    val groupUsers = groupUserRepository.findAllByUser(targetUser)
+    val matchedGroupUser = groupUsers.find { groupUser ->
+      accessSubjects.any { subject ->
+        subject.subjectId == groupUser.group.id && subject.accessType == TradingStrategyAccessType.GROUP
       }
+    }
+
+    if (matchedGroupUser != null) {
+      return true
     }
 
     // 전략에 접근 가능한 주체 중에 사용자가 포함되어 있으면 접근 가능하다.

@@ -1,5 +1,6 @@
 package org.mj.passiveincome.app.api.features.portfolio.interest.service
 
+import org.mj.passiveincome.app.api.config.security.AuthenticationUtil
 import org.mj.passiveincome.app.api.features.stock.service.StockServiceHelper
 import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.portfolio.interest.InterestGroupRepository
@@ -28,7 +29,7 @@ class InterestStockService(
     val interestStock = InterestStock(
       group = InterestServiceHelper.findInterestGroup(interestGroupRepository, payload.interestGroupId),
       stock = StockServiceHelper.findStock(stockRepository, payload.stockId),
-      user = UserServiceHelper.findUser(userRepository, payload.userId),
+      user = UserServiceHelper.findCurrentUser(userRepository),
     )
 
     addInterestStockService.addInterestStock(interestStock)
@@ -38,9 +39,9 @@ class InterestStockService(
    * 사용자 / 그룹 별 관심 주식 목록 조회
    */
   @Transactional(readOnly = true)
-  fun findInterestStocks(userId: Long, groupId: Long): List<InterestStockResponse> {
+  fun findInterestStocks(groupId: Long): List<InterestStockResponse> {
     return interestStockRepository.findInterestStocks(
-      userId = userId,
+      userId = AuthenticationUtil.getAuthUserId(),
       groupId = groupId,
     ).map { InterestStockResponse.of(it) }
   }

@@ -18,10 +18,8 @@ class KisCredentialsService(
    */
   @Transactional
   fun registerKisCredentials(payload: RegisterKisCredentials) {
-    val user = UserServiceHelper.findUser(userRepository, payload.userId)
-
     val userKisCredentials = UserKisCredentials(
-      user = user,
+      user = UserServiceHelper.findCurrentUser(userRepository),
       appKey = payload.appKey,
       appSecretKey = payload.appSecretKey,
     )

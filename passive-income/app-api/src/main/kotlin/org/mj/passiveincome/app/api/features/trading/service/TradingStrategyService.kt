@@ -1,6 +1,5 @@
 package org.mj.passiveincome.app.api.features.trading.service
 
-import org.mj.passiveincome.app.api.config.security.AuthenticationUtil
 import org.mj.passiveincome.app.api.features.user.service.UserServiceHelper
 import org.mj.passiveincome.domain.trading.TradingStrategy
 import org.mj.passiveincome.domain.trading.TradingStrategyRepository
@@ -37,8 +36,7 @@ class TradingStrategyService(
    */
   @Transactional
   fun createTradingStrategy(payload: CreateTradingStrategy) {
-    val userId = AuthenticationUtil.getAuthUserId()
-    val user = UserServiceHelper.findUser(userRepository, userId)
+    val user = UserServiceHelper.findCurrentUser(userRepository)
 
     val tradingStrategy = TradingStrategy(
       name = payload.strategyName,

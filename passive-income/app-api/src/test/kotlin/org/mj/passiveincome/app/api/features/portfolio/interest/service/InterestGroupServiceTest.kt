@@ -1,12 +1,11 @@
 package org.mj.passiveincome.app.api.features.portfolio.interest.service
 
 import AppApiDataJpaTest
+import DummyAuthUtil
 import io.kotest.assertions.extracting
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import org.mj.passiveincome.app.api.features.user.service.UserNotFoundException
 import org.mj.passiveincome.domain.portfolio.interest.InterestGroup
 import org.mj.passiveincome.domain.portfolio.interest.InterestGroupRepository
 import org.mj.passiveincome.domain.user.UserFixtures
@@ -21,10 +20,10 @@ class InterestGroupServiceTest(
   val interestGroupService = InterestGroupService(interestGroupRepository, userRepository)
 
   describe("createInterestGroup") {
-    val user = userRepository.save(UserFixtures.user1())
+    val user = DummyAuthUtil.dobby(userRepository)
 
     context("유효한 요청을 받으면") {
-      val payload = CreateInterestGroup(name = "Group 1", userId = user.id)
+      val payload = CreateInterestGroup(name = "Group 1")
 
       it("관심 그룹을 생성한다.") {
         interestGroupService.createInterestGroup(payload)
@@ -37,19 +36,11 @@ class InterestGroupServiceTest(
         result.user shouldBe user
       }
     }
-
-    context("사용자 ID에 해당하는 사용자가 존재하지 않으면") {
-      val invalidPayload = CreateInterestGroup(name = "Group 1", userId = -1)
-
-      it("UserNotFoundException이 발생한다.") {
-        shouldThrow<UserNotFoundException> { interestGroupService.createInterestGroup(invalidPayload) }
-      }
-    }
   }
 
   describe("findInterestGroups") {
-    val user1 = userRepository.save(UserFixtures.user1())
-    val user2 = userRepository.save(UserFixtures.user2())
+    val user1 = userRepository.save(UserFixtures.dobby())
+    val user2 = userRepository.save(UserFixtures.myungJin())
 
     interestGroupRepository.saveAll(
       listOf(

@@ -11,7 +11,6 @@ import org.mj.passiveincome.system.web.response.content
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -32,8 +31,8 @@ class RecentlyViewedStockController(
    * 최근 본 주식 목록 조회
    */
   @GetMapping("/recently-viewed-stocks")
-  fun findRecentlyViewedStocks(@RequestParam userId: Long): BaseResponseContent<RecentlyViewedStockResponse> {
-    val recentlyViewedStocks = recentlyViewedStockService.findRecentlyViewedStocks(userId)
+  fun findRecentlyViewedStocks(): BaseResponseContent<RecentlyViewedStockResponse> {
+    val recentlyViewedStocks = recentlyViewedStockService.findRecentlyViewedStocks()
     return BaseResponseDetail.content(recentlyViewedStocks)
   }
 }

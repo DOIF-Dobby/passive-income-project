@@ -18,12 +18,18 @@ data class CreateTradingStrategy(
 data class TradingStrategyResponse(
   val strategyId: Long,
   val strategyName: String,
+  val visibility: TradingStrategyVisibility,
+  val ownerId: Long,
+  val ownerName: String,
 ) {
   companion object {
     fun of(tradingStrategy: TradingStrategy) = tradingStrategy.run {
       TradingStrategyResponse(
         strategyId = id,
         strategyName = name,
+        visibility = visibility,
+        ownerId = owner.id,
+        ownerName = owner.name,
       )
     }
   }

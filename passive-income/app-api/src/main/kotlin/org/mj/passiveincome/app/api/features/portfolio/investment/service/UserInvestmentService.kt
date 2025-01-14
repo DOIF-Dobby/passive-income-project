@@ -20,7 +20,7 @@ class UserInvestmentService(
    */
   @Transactional
   fun addUserInvestment(payload: AddUserInvestment) {
-    val user = UserServiceHelper.findUser(userRepository, payload.userId)
+    val user = UserServiceHelper.findCurrentUser(userRepository)
     val tradingStrategy = TradingStrategyServiceHelper.findTradingStrategy(tradingStrategyRepository, payload.tradingStrategyId)
 
     addUserInvestmentService.addUserInvestment(user, tradingStrategy)

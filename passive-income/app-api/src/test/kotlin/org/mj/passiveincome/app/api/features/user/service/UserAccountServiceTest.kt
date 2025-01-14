@@ -17,7 +17,7 @@ class UserAccountServiceTest(
   val userAccountService = UserAccountService(userRepository, userAccountRepository)
 
   describe("registerAccount") {
-    val user = userRepository.save(UserFixtures.user1())
+    val user = userRepository.save(UserFixtures.dobby())
 
     context("사용자 ID에 해당하는 사용자가 존재하면") {
       it("해당 사용자의 계좌를 등록한다.") {

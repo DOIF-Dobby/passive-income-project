@@ -16,3 +16,7 @@ dependencies {
   implementation(project(":passive-income:system-security"))
   implementation(project(":passive-income:type-common"))
 }
+
+apply {
+  plugin("java-test-fixtures")
+}

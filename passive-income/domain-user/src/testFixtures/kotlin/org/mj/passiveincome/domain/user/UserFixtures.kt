@@ -6,18 +6,18 @@ import org.mj.passiveincome.type.common.OAuth2ProviderType
 class UserFixtures {
 
   companion object {
-    fun user1(): User {
+    fun dobby(): User {
       return User(
-        name = "Test User1",
+        name = "Dobby",
         oauth2ProviderType = OAuth2ProviderType.GOOGLE,
         oauth2Subject = "google-oauth-id1",
         email = Email("doif.dobby@gmail.com")
       )
     }
 
-    fun user2(): User {
+    fun myungJin(): User {
       return User(
-        name = "Test User2",
+        name = "Myungjin",
         oauth2ProviderType = OAuth2ProviderType.GOOGLE,
         oauth2Subject = "google-oauth-id2",
         email = Email("kjpmj27@gmail.com")

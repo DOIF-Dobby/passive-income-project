@@ -11,7 +11,6 @@ import org.mj.passiveincome.domain.portfolio.interest.RecentlyViewedStock
 data class CreateInterestGroup(
   @field:Size(min = 2)
   val name: String,
-  val userId: Long,
 )
 
 /**
@@ -19,7 +18,6 @@ data class CreateInterestGroup(
  */
 data class AddInterestStock(
   val stockId: Long,
-  val userId: Long,
   val interestGroupId: Long
 )
 
@@ -27,7 +25,6 @@ data class AddInterestStock(
  * 최근 본 주식 추가
  */
 data class AddRecentlyViewedStock(
-  val userId: Long,
   val stockId: Long,
 )
 

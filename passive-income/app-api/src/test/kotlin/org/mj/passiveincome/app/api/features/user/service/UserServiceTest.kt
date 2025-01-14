@@ -15,7 +15,7 @@ class UserServiceTest(
   val userService = UserService(userRepository)
 
   describe("findUser") {
-    val user = userRepository.save(UserFixtures.user1())
+    val user = userRepository.save(UserFixtures.dobby())
 
     context("사용자 ID에 해당하는 사용자가 존재하면") {
       it("사용자 정보를 반환한다.") {
