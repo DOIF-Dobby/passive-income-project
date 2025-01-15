@@ -5,7 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties(prefix = "kis")
 class KisConfig(
   val url: String,
-  val accessToken: String,
   val appKey: String,
   val appSecret: String,
 )

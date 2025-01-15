@@ -22,7 +22,7 @@ class TestRequest(
         it.set("content-type", "application/json")
         it.set(
           "authorization",
-          "Bearer ${kisConfig.accessToken}"
+          "Bearer null"
         )
         it.set("appkey", kisConfig.appKey)
         it.set("appsecret", kisConfig.appSecret)

@@ -6,3 +6,11 @@ package org.mj.passiveincome.app.api.features.portfolio.investment.service
 data class AddUserInvestment(
   val tradingStrategyId: Long,
 )
+
+/**
+ * 사용자 투자 주식 추가
+ */
+data class AddUserInvestmentStock(
+  val stockId: Long,
+)
+

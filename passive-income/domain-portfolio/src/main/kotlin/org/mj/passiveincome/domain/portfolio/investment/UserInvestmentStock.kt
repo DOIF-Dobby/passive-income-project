@@ -17,7 +17,7 @@ import org.mj.passiveincome.system.data.jpa.BaseEntity
  * 사용자 주식 투자 Entity
  */
 @Entity
-class UserInvestmentStock(
+class UserInvestmentStock internal constructor(
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_investment_stock_id")
