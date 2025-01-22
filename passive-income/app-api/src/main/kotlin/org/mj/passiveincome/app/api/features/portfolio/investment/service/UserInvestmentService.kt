@@ -52,4 +52,27 @@ class UserInvestmentService(
 
     userInvestment.removeStock(stock)
   }
+
+
+  /**
+   * 사용자 투자 주식 활성화
+   */
+  @Transactional
+  fun activateUserInvestmentStock(userInvestmentId: Long, stockId: Long) {
+    val userInvestment = UserInvestmentServiceHelper.findUserInvestment(userInvestmentRepository, userInvestmentId)
+    val stock = StockServiceHelper.findStock(stockRepository, stockId)
+
+    userInvestment.activateStock(stock)
+  }
+
+  /**
+   * 사용자 투자 주식 비활성화
+   */
+  @Transactional
+  fun deactivateUserInvestmentStock(userInvestmentId: Long, stockId: Long) {
+    val userInvestment = UserInvestmentServiceHelper.findUserInvestment(userInvestmentRepository, userInvestmentId)
+    val stock = StockServiceHelper.findStock(stockRepository, stockId)
+
+    userInvestment.deactivateStock(stock)
+  }
 }

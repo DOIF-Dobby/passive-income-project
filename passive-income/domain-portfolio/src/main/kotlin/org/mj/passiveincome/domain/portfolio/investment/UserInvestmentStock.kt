@@ -10,7 +10,10 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import org.mj.passiveincome.domain.portfolio.investment.event.UserInvestmentStockActivatedEvent
+import org.mj.passiveincome.domain.portfolio.investment.event.UserInvestmentStockDeactivatedEvent
 import org.mj.passiveincome.domain.stock.Stock
+import org.mj.passiveincome.system.core.event.EventPublisher
 import org.mj.passiveincome.system.data.jpa.BaseEntity
 
 /**
@@ -38,14 +41,16 @@ class UserInvestmentStock internal constructor(
   /**
    * 자동 거래 활성화
    */
-  fun activate() {
+  internal fun activate() {
     tradingActivateState = TradingActivateState.ACTIVE
+    EventPublisher.publishEvent(UserInvestmentStockActivatedEvent(id))
   }
 
   /**
    * 자동 거래 비활성화
    */
-  fun deactivate() {
+  internal fun deactivate() {
     tradingActivateState = TradingActivateState.INACTIVE
+    EventPublisher.publishEvent(UserInvestmentStockDeactivatedEvent(id))
   }
 }

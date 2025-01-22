@@ -63,4 +63,18 @@ class UserInvestment(
       it.stock == stock
     }
   }
+
+  /**
+   * 주식 활성화
+   */
+  fun activateStock(stock: Stock) {
+    userInvestmentStocks.find { it.stock == stock }?.activate()
+  }
+
+  /**
+   * 주식 비활성화
+   */
+  fun deactivateStock(stock: Stock) {
+    userInvestmentStocks.find { it.stock == stock }?.deactivate()
+  }
 }

@@ -7,6 +7,13 @@ plugins {
   id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
   id("org.mj.passiveincome.build.optional.optional-dependencies")
   id("java-test-fixtures")
+  id("idea")
+}
+
+idea {
+  module {
+    isDownloadSources = true
+  }
 }
 
 // 빌드 시 루트 프로젝트 jar 생성 되지 않게

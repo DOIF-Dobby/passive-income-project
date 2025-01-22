@@ -2,13 +2,17 @@ package org.mj.passiveincome.app.api.features.portfolio.investment.service
 
 import AppApiDataJpaTest
 import DummyAuthUtil
+import EventPublisherTestConfig
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.mj.passiveincome.domain.portfolio.investment.DuplicateStockInInvestmentException
+import org.mj.passiveincome.domain.portfolio.investment.TradingActivateState
 import org.mj.passiveincome.domain.portfolio.investment.UserInvestment
 import org.mj.passiveincome.domain.portfolio.investment.UserInvestmentRepository
+import org.mj.passiveincome.domain.portfolio.investment.event.UserInvestmentStockActivatedEvent
+import org.mj.passiveincome.domain.portfolio.investment.event.UserInvestmentStockDeactivatedEvent
 import org.mj.passiveincome.domain.portfolio.investment.service.AddUserInvestmentService
 import org.mj.passiveincome.domain.stock.StockFixtures
 import org.mj.passiveincome.domain.stock.StockRepository
@@ -25,8 +29,12 @@ import org.mj.passiveincome.domain.user.GroupUserRepository
 import org.mj.passiveincome.domain.user.GroupUserRole
 import org.mj.passiveincome.domain.user.UserFixtures
 import org.mj.passiveincome.domain.user.UserRepository
+import org.springframework.context.annotation.Import
+import org.springframework.context.event.EventListener
+import org.springframework.stereotype.Component
 
 @AppApiDataJpaTest
+@Import(value = [EventPublisherTestConfig::class, TestUserInvestmentStockEventHandler::class])
 class UserInvestmentServiceTest(
   val userRepository: UserRepository,
   val tradingStrategyRepository: TradingStrategyRepository,
@@ -34,6 +42,7 @@ class UserInvestmentServiceTest(
   val stockRepository: StockRepository,
   val groupUserRepository: GroupUserRepository,
   val groupRepository: GroupRepository,
+  val testUserInvestmentStockEventHandler: TestUserInvestmentStockEventHandler
 ) : DescribeSpec({
 
   val tradingStrategyAccessChecker = TradingStrategyAccessChecker(
@@ -313,4 +322,76 @@ class UserInvestmentServiceTest(
       }
     }
   }
+
+
+  describe("activateUserInvestmentStock / deactivateUserInvestmentStock") {
+    val user = DummyAuthUtil.dobby(userRepository)
+
+    val tradingStrategy = tradingStrategyRepository.save(
+      TradingStrategy(
+        name = "전략",
+        owner = userRepository.save(UserFixtures.myungJin()),
+        visibility = TradingStrategyVisibility.PUBLIC
+      )
+    )
+
+    val userInvestment = userInvestmentRepository.save(
+      UserInvestment(
+        user = user,
+        tradingStrategy = tradingStrategy
+      )
+    )
+
+    val stock = stockRepository.save(
+      StockFixtures.stockSamsung()
+    )
+
+    userInvestment.addStock(stock)
+
+    context("투자 주식을 활성화 하는 경우") {
+      it("UserInvestmentStockActivatedEvent가 발행된다.") {
+        userInvestmentService.activateUserInvestmentStock(
+          userInvestmentId = userInvestment.id,
+          stockId = stock.id
+        )
+
+        val userInvestmentStock = userInvestment.userInvestmentStocks.first()
+        userInvestmentStock.tradingActivateState shouldBe TradingActivateState.ACTIVE
+
+        testUserInvestmentStockEventHandler.activatedStockIds shouldHaveSize 1
+        testUserInvestmentStockEventHandler.activatedStockIds[0] shouldBe userInvestmentStock.id
+      }
+    }
+
+    context("투자 주식을 비활성화 하는 경우") {
+      it("UserInvestmentStockDeactivatedEvent가 발행된다.") {
+        userInvestmentService.deactivateUserInvestmentStock(
+          userInvestmentId = userInvestment.id,
+          stockId = stock.id
+        )
+
+        val userInvestmentStock = userInvestment.userInvestmentStocks.first()
+        userInvestmentStock.tradingActivateState shouldBe TradingActivateState.INACTIVE
+
+        testUserInvestmentStockEventHandler.deactivatedStockIds shouldHaveSize 1
+        testUserInvestmentStockEventHandler.deactivatedStockIds[0] shouldBe userInvestmentStock.id
+      }
+    }
+  }
 })
+
+@Component
+class TestUserInvestmentStockEventHandler {
+  val activatedStockIds: MutableList<Long> = mutableListOf()
+  val deactivatedStockIds: MutableList<Long> = mutableListOf()
+
+  @EventListener(UserInvestmentStockActivatedEvent::class)
+  fun handleUserInvestmentStockActivatedEvent(event: UserInvestmentStockActivatedEvent) {
+    activatedStockIds.add(event.id)
+  }
+
+  @EventListener(UserInvestmentStockDeactivatedEvent::class)
+  fun handleUserInvestmentStockDeactivatedEvent(event: UserInvestmentStockDeactivatedEvent) {
+    deactivatedStockIds.add(event.id)
+  }
+}
