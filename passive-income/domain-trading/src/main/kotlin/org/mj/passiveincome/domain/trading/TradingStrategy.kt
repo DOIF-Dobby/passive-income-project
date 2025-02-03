@@ -3,6 +3,8 @@ package org.mj.passiveincome.domain.trading
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -30,6 +32,7 @@ class TradingStrategy(
   @Column(name = "strategy_description")
   var description: String? = null,
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "strategy_visibility")
   var visibility: TradingStrategyVisibility = TradingStrategyVisibility.PRIVATE,
 

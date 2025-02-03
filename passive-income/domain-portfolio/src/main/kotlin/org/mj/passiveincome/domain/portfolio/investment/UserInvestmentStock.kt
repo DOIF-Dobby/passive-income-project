@@ -42,6 +42,10 @@ class UserInvestmentStock internal constructor(
    * 자동 거래 활성화
    */
   internal fun activate() {
+    if (tradingActivateState == TradingActivateState.ACTIVE) {
+      return
+    }
+
     tradingActivateState = TradingActivateState.ACTIVE
     EventPublisher.publishEvent(UserInvestmentStockActivatedEvent(id))
   }
@@ -50,6 +54,10 @@ class UserInvestmentStock internal constructor(
    * 자동 거래 비활성화
    */
   internal fun deactivate() {
+    if (tradingActivateState == TradingActivateState.INACTIVE) {
+      return
+    }
+
     tradingActivateState = TradingActivateState.INACTIVE
     EventPublisher.publishEvent(UserInvestmentStockDeactivatedEvent(id))
   }

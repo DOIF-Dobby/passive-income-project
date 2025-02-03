@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component
 import java.time.Duration
 
 enum class FilterChainType {
-  PERMIT_ALL,
   OAUTH2,
 }
 
 @Component
 @ConfigurationProperties(prefix = "app.security")
 data class SecurityProperties(
-  var filterChain: FilterChainType = FilterChainType.PERMIT_ALL
+  var filterChain: FilterChainType = FilterChainType.OAUTH2,
+  var createTestUser: Boolean = false,
 )
 
 @Component
