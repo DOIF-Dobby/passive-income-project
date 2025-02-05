@@ -1,9 +1,10 @@
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-data-redis")
   implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("org.springframework.boot:spring-boot-starter-security")
+  implementation("org.springframework.kafka:spring-kafka")
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -13,6 +14,7 @@ dependencies {
   implementation(project(":passive-income:system-core"))
   implementation(project(":passive-income:system-data-jpa"))
   implementation(project(":passive-income:system-data-redis"))
+  implementation(project(":passive-income:system-kafka"))
   implementation(project(":passive-income:system-security"))
   implementation(project(":passive-income:system-security-oauth2"))
   implementation(project(":passive-income:system-web"))

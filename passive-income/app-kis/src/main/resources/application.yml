@@ -1,7 +1,30 @@
 spring:
   application:
     name: passive-income-app-kis
+  profiles:
+    active: local
 
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+server:
+  port: 8081
+
+logging:
+  level:
+    root: info
 
 kis:
   url: https://openapi.koreainvestment.com:9443

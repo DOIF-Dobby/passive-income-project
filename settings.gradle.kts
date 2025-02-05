@@ -2,24 +2,27 @@ plugins {
   id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-include("passive-income")
-include("passive-income:app-api")
-include("passive-income:app-kis")
-include("passive-income:domain-common")
-include("passive-income:domain-credentials")
-include("passive-income:domain-finance")
-include("passive-income:domain-portfolio")
-include("passive-income:domain-stock")
-include("passive-income:domain-trading")
-include("passive-income:domain-user")
-include("passive-income:system-core")
-include("passive-income:system-data")
-include("passive-income:system-data-jpa")
-include("passive-income:system-data-redis")
-include("passive-income:system-security")
-include("passive-income:system-security-oauth2")
-include("passive-income:system-web")
-include("passive-income:type-common")
+include(
+  "passive-income",
+  "passive-income:app-api",
+  "passive-income:app-kis",
+  "passive-income:domain-common",
+  "passive-income:domain-credentials",
+  "passive-income:domain-finance",
+  "passive-income:domain-portfolio",
+  "passive-income:domain-stock",
+  "passive-income:domain-trading",
+  "passive-income:domain-user",
+  "passive-income:system-core",
+  "passive-income:system-data",
+  "passive-income:system-data-jpa",
+  "passive-income:system-data-redis",
+  "passive-income:system-kafka",
+  "passive-income:system-security",
+  "passive-income:system-security-oauth2",
+  "passive-income:system-web",
+  "passive-income:type-common",
+)
 
 rootProject.name = "passive-income-project"
 
