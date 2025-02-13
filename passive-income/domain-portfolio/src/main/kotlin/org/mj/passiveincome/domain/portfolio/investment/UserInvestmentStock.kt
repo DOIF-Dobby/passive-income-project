@@ -42,23 +42,39 @@ class UserInvestmentStock internal constructor(
    * 자동 거래 활성화
    */
   internal fun activate() {
+    // 이미 활성화된 경우 아무것도 하지 않는다.
     if (tradingActivateState == TradingActivateState.ACTIVE) {
       return
     }
 
     tradingActivateState = TradingActivateState.ACTIVE
-    EventPublisher.publishEvent(UserInvestmentStockActivatedEvent(id))
+
+    // 이벤트 발행
+    val event = UserInvestmentStockActivatedEvent(
+      id = id,
+      stockShortCode = stock.shortCode
+    )
+
+    EventPublisher.publishEvent(event)
   }
 
   /**
    * 자동 거래 비활성화
    */
   internal fun deactivate() {
+    // 이미 비활성화된 경우 아무것도 하지 않는다.
     if (tradingActivateState == TradingActivateState.INACTIVE) {
       return
     }
 
     tradingActivateState = TradingActivateState.INACTIVE
-    EventPublisher.publishEvent(UserInvestmentStockDeactivatedEvent(id))
+
+    // 이벤트 발행
+    val event = UserInvestmentStockDeactivatedEvent(
+      id = id,
+      stockShortCode = stock.shortCode
+    )
+
+    EventPublisher.publishEvent(event)
   }
 }

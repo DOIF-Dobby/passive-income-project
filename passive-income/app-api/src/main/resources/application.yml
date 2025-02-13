@@ -29,7 +29,7 @@ app:
     jwt:
       access-token:
         secret: ${JWT_ACCESS_TOKEN_SECRET}
-        expiration: PT24H
+        expiration: P7D
     oauth2:
       provider:
         google:

@@ -37,6 +37,30 @@ class RedisCommand(
     return redisTemplate.opsForValue().get(key)
   }
 
+  fun remove(key: String) {
+    redisTemplate.delete(key)
+  }
+
+  fun addSet(key: String, value: String) {
+    redisTemplate.opsForSet().add(key, value)
+  }
+
+  fun getSet(key: String): Set<String> {
+    return redisTemplate.opsForSet().members(key) ?: emptySet()
+  }
+
+  fun removeSet(key: String, value: String) {
+    redisTemplate.opsForSet().remove(key, value)
+  }
+
+  fun getSetSize(key: String): Long {
+    return redisTemplate.opsForSet().size(key) ?: 0
+  }
+
+  fun isEmptySet(key: String): Boolean {
+    return getSetSize(key) == 0L
+  }
+
   fun <T : Any> get(key: String, classType: KClass<T>): T? {
     return deserialize(redisTemplate.opsForValue().get(key), classType)
   }

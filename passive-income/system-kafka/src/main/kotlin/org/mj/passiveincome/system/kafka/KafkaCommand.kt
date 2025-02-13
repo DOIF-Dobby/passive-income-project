@@ -37,11 +37,7 @@ class KafkaCommand(
     }
   }
 
-  fun <T : Any> deserialize(value: String?, classType: KClass<T>): T? {
-    if (value == null) {
-      return null
-    }
-
+  fun <T : Any> deserialize(value: String, classType: KClass<T>): T {
     try {
       return objectMapper.readValue(value, classType.java)
     } catch (e: Exception) {

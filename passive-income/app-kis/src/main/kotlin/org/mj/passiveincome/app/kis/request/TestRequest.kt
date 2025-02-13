@@ -1,16 +1,15 @@
 package org.mj.passiveincome.app.kis.request
 
-import org.mj.passiveincome.app.kis.config.KisConfig
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
 
 @Component
 class TestRequest(
-  private val kisConfig: KisConfig
+  private val kisRestClient: RestClient
 ) {
 
   fun testRequest2() {
-    val body = RestClient.create(kisConfig.url)
+    val body = kisRestClient
       .get()
       .uri {
         it.path("/uapi/domestic-stock/v1/quotations/inquire-price")
@@ -24,8 +23,6 @@ class TestRequest(
           "authorization",
           "Bearer null"
         )
-        it.set("appkey", kisConfig.appKey)
-        it.set("appsecret", kisConfig.appSecret)
         it.set("tr_id", "FHKST01010100")
       }
       .retrieve()
