@@ -18,11 +18,6 @@ class KisRealtimeWebSocketManager(
   fun test() {
 
     val headers = WebSocketHttpHeaders()
-//    headers.add(HttpHeaders.CONTENT_TYPE, "utf-8")
-//    headers.add("approval_key", "fc11db8e-113c-4e60-b485-6a7107f586c1")
-//    headers.add("custtype", "P")
-//    headers.add("tr_type", "1")
-
     val webSocketClient = StandardWebSocketClient()
     webSocketClient.execute(TestHandler(), headers, URI.create(kisProperties.wsUrl))
   }

@@ -28,6 +28,6 @@ logging:
 
 kis:
   url: https://openapi.koreainvestment.com:9443
+  ws-url: ws://ops.koreainvestment.com:21000
   app-key: ${KIS_APP_KEY}
   app-secret: ${KIS_APP_SECRET}
-  ws-url: ws://ops.koreainvestment.com:21000
