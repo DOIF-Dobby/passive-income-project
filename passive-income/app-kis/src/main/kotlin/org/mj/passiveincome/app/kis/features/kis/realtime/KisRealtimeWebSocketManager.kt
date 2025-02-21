@@ -4,23 +4,20 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.mj.passiveincome.app.kis.config.KisProperties
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.TextMessage
-import org.springframework.web.socket.WebSocketHttpHeaders
 import org.springframework.web.socket.WebSocketSession
-import org.springframework.web.socket.client.standard.StandardWebSocketClient
 import org.springframework.web.socket.handler.TextWebSocketHandler
-import java.net.URI
 
 @Component
 class KisRealtimeWebSocketManager(
   private val kisProperties: KisProperties
 ) {
 
-  fun test() {
-
-    val headers = WebSocketHttpHeaders()
-    val webSocketClient = StandardWebSocketClient()
-    webSocketClient.execute(TestHandler(), headers, URI.create(kisProperties.wsUrl))
-  }
+//  fun test() {
+//
+//    val headers = WebSocketHttpHeaders()
+//    val webSocketClient = StandardWebSocketClient()
+//    webSocketClient.execute(TestHandler(), headers, URI.create(kisProperties.wsUrl))
+//  }
 }
 
 class TestHandler : TextWebSocketHandler() {

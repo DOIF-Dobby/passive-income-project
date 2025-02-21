@@ -6,6 +6,8 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
 
+  implementation("io.lettuce:lettuce-core")
+
   implementation(project(":passive-income:system-core"))
   api(project(":passive-income:system-data"))
 }
