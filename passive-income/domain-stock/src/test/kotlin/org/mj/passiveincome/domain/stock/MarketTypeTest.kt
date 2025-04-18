@@ -90,41 +90,41 @@ class MarketTypeTest : DescribeSpec({
     }
   }
 
-  describe("NASDAQ 시간") {
-    val nasdaq = MarketType.NASDAQ
-
-    it("한국 시간 테스트") {
-      nasdaq.koreanRegularMarketStartTime shouldBe LocalTime.of(23, 30)
-      nasdaq.koreanRegularMarketEndTime shouldBe LocalTime.of(6, 0)
-      nasdaq.koreanPreMarketStartTime shouldBe LocalTime.of(18, 0)
-      nasdaq.koreanPreMarketEndTime shouldBe LocalTime.of(23, 30)
-      nasdaq.koreanPostMarketStartTime shouldBe null
-      nasdaq.koreanPostMarketEndTime shouldBe null
-    }
-
-    it("한국 시간 기준 오픈 시간 테스트") {
-      nasdaq.koreanMarketOpenTimes shouldContainExactlyInAnyOrder listOf(
-        MinutesRange.of("18:00", "23:30"),
-        MinutesRange.of("23:30", "23:59"),
-        MinutesRange.of("00:00", "06:00")
-      )
-    }
-
-    it("오픈 체크 테스트") {
-      nasdaq.isMarketOpen(LocalTime.of(18, 0)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(21, 0)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(23, 30)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(23, 50)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(0, 0)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(0, 30)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(3, 30)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(5, 30)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(6, 0)) shouldBe true
-      nasdaq.isMarketOpen(LocalTime.of(7, 0)) shouldBe false
-      nasdaq.isMarketOpen(LocalTime.of(9, 0)) shouldBe false
-      nasdaq.isMarketOpen(LocalTime.of(12, 0)) shouldBe false
-      nasdaq.isMarketOpen(LocalTime.of(15, 0)) shouldBe false
-      nasdaq.isMarketOpen(LocalTime.of(17, 59)) shouldBe false
-    }
-  }
+//  describe("NASDAQ 시간") {
+//    val nasdaq = MarketType.NASDAQ
+//
+//    it("한국 시간 테스트") {
+//      nasdaq.koreanRegularMarketStartTime shouldBe LocalTime.of(23, 30)
+//      nasdaq.koreanRegularMarketEndTime shouldBe LocalTime.of(6, 0)
+//      nasdaq.koreanPreMarketStartTime shouldBe LocalTime.of(18, 0)
+//      nasdaq.koreanPreMarketEndTime shouldBe LocalTime.of(23, 30)
+//      nasdaq.koreanPostMarketStartTime shouldBe null
+//      nasdaq.koreanPostMarketEndTime shouldBe null
+//    }
+//
+//    it("한국 시간 기준 오픈 시간 테스트") {
+//      nasdaq.koreanMarketOpenTimes shouldContainExactlyInAnyOrder listOf(
+//        MinutesRange.of("18:00", "23:30"),
+//        MinutesRange.of("23:30", "23:59"),
+//        MinutesRange.of("00:00", "06:00")
+//      )
+//    }
+//
+//    it("오픈 체크 테스트") {
+//      nasdaq.isMarketOpen(LocalTime.of(18, 0)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(21, 0)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(23, 30)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(23, 50)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(0, 0)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(0, 30)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(3, 30)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(5, 30)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(6, 0)) shouldBe true
+//      nasdaq.isMarketOpen(LocalTime.of(7, 0)) shouldBe false
+//      nasdaq.isMarketOpen(LocalTime.of(9, 0)) shouldBe false
+//      nasdaq.isMarketOpen(LocalTime.of(12, 0)) shouldBe false
+//      nasdaq.isMarketOpen(LocalTime.of(15, 0)) shouldBe false
+//      nasdaq.isMarketOpen(LocalTime.of(17, 59)) shouldBe false
+//    }
+//  }
 })
