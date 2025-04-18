@@ -52,7 +52,8 @@ class UserInvestmentStock internal constructor(
     // 이벤트 발행
     val event = UserInvestmentStockActivatedEvent(
       id = id,
-      stockShortCode = stock.shortCode
+      stockShortCode = stock.shortCode,
+      marketType = stock.marketType,
     )
 
     EventPublisher.publishEvent(event)
@@ -72,7 +73,8 @@ class UserInvestmentStock internal constructor(
     // 이벤트 발행
     val event = UserInvestmentStockDeactivatedEvent(
       id = id,
-      stockShortCode = stock.shortCode
+      stockShortCode = stock.shortCode,
+      marketType = stock.marketType,
     )
 
     EventPublisher.publishEvent(event)
