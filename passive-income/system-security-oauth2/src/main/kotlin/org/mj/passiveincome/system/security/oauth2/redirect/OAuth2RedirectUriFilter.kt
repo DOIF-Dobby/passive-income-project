@@ -23,7 +23,7 @@ class OAuth2RedirectUriFilter(
       filterChain.doFilter(request, response)
       return
     }
-    val providerType = request.getParameter(providerParameter)
+    val providerType = obtainProvider(request)
     val redirectUri = oAuth2RedirectUriResolver.resolveRedirectUri(providerType)
 
     val redirectUriResponse = BaseResponseDetail.ok(
@@ -38,6 +38,13 @@ class OAuth2RedirectUriFilter(
 
     objectMapper.writeValue(response.writer, redirectUriResponse)
 
+  }
+
+  /**
+   * OAuth2 Provider를 추출한다.
+   */
+  private fun obtainProvider(request: HttpServletRequest): String {
+    return request.getParameter(providerParameter) ?: ""
   }
 
   companion object {
