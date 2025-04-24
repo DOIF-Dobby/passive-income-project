@@ -4,6 +4,7 @@ import org.mj.passiveincome.app.api.features.user.service.RegisterAccount
 import org.mj.passiveincome.app.api.features.user.service.UserAccountService
 import org.mj.passiveincome.system.core.base.BaseResponse
 import org.mj.passiveincome.system.core.base.BaseResponseDetail
+import org.mj.passiveincome.system.web.exception.NotFoundApiException
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -32,9 +33,12 @@ class UserAccountController(
 
   @PostMapping("/test2")
   fun test2(@RequestBody payload: Test): BaseResponseDetail<Test> {
-    return BaseResponseDetail.ok(payload)
+//    return BaseResponseDetail.ok(payload)
+    throw TestException()
   }
 }
+
+class TestException : NotFoundApiException(messageProperty = "user.not-found")
 
 data class Test(
   val name: String,
